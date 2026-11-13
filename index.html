@@ -231,6 +231,29 @@
     margin: 1.4rem 0 0;
     font-size: 1rem;
   }
+  .screenshots {
+    max-width: 52rem;
+    margin: 0 auto 6rem;
+    padding: 0 1.25rem;
+  }
+  .screenshots-lead {
+    margin: 0 0 1.4rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+  .shots {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .shots img {
+    flex: 0 0 auto;
+    width: min(78vw, 20rem);
+    height: auto;
+    border-radius: 16px;
+    scroll-snap-align: start;
+  }
   .pro {
     width: min(50rem, calc(100% - 2.5rem));
     margin: 0 auto 7rem;
@@ -382,6 +405,21 @@
     </ul>
     <p class="extras-detail">iCloud keeps everything in sync on your devices, finished workouts and body entries can be saved to Apple Health, an on-device coach with Apple Intelligence (on supported iPhones) helps you plan, and you can work with a trainer (reports out, programs and adjustments back, as files).</p>
   </div>
+  <section class="screenshots" aria-labelledby="shots-title">
+    <h2 id="shots-title" class="screenshots-lead">See it in action</h2>
+    <div class="shots">
+      <img src="screenshots/01-today.png" width="620" height="1347" loading="lazy" alt="The Today tab: the session to do with its exercises and the start workout button">
+      <img src="screenshots/02-body.png" width="620" height="1347" loading="lazy" alt="The Body tab: body weight, body fat and tape measurements, each with its latest value, change and chart">
+      <img src="screenshots/03-workout.png" width="620" height="1347" loading="lazy" alt="A workout under way: the set logged in a pop-up over the exercise">
+      <img src="screenshots/04-evaluation.png" width="620" height="1347" loading="lazy" alt="The workout evaluation after finishing, showing what improved and what to aim for next time">
+      <img src="screenshots/05-next-cycle.png" width="620" height="1347" loading="lazy" alt="The next cycle review, each exercise's new weights prescribed from what was logged, with its ticks">
+      <img src="screenshots/06-change-day.png" width="620" height="1347" loading="lazy" alt="The Change day sheet: a session swapped with another day, with its what-changes preview">
+      <img src="screenshots/07-calendar.png" width="620" height="1347" loading="lazy" alt="The calendar with done, partly done, missed and planned sessions">
+      <img src="screenshots/08-programs.png" width="620" height="1347" loading="lazy" alt="The Programs tab listing the training programs">
+      <img src="screenshots/09-board.png" width="620" height="1347" loading="lazy" alt="The program board laying the training cycle out day by day">
+      <img src="screenshots/10-periodization.png" width="620" height="1347" loading="lazy" alt="The periodization model picker: linear, block, undulating and pendulum, each with its intensity curve">
+    </div>
+  </section>
   <section class="pro" aria-labelledby="pro-title">
     <h2 id="pro-title">TrainingPlanner Pro</h2>
     <p>Pro is a monthly or yearly subscription. Gym members can redeem their gym's code for the member price.</p>

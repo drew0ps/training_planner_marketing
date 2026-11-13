@@ -245,32 +245,23 @@
     margin: 0 0 2.25rem;
     font-size: 1.1rem;
   }
-  .walkthrough {
+  .shotgrid {
     display: grid;
-    gap: 3.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem 1.25rem;
   }
-  .walk-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-  }
-  .walk-row img {
-    flex: 0 0 auto;
-    width: min(78vw, 19rem);
+  .shot img {
+    display: block;
+    width: 100%;
     height: auto;
     border-radius: 16px;
   }
-  .walk-text {
-    align-self: stretch;
-  }
-  .walk-text h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.35rem;
-    line-height: 1.3;
+  .shot h3 {
+    margin: 0.75rem 0 0.25rem;
+    font-size: 1rem;
     letter-spacing: -0.01em;
   }
-  .walk-text p { margin: 0; }
+  .shot p { margin: 0; }
   .pro {
     width: min(50rem, calc(100% - 2.5rem));
     margin: 0 auto 7rem;
@@ -397,10 +388,7 @@
       column-gap: 2.75rem;
     }
     .ticks li { break-inside: avoid; }
-    .walk-row { flex-direction: row; align-items: center; gap: 2.75rem; }
-    .walk-row:nth-of-type(even) { flex-direction: row-reverse; }
-    .walk-row img { width: 20rem; }
-    .walk-text { flex: 1 1 0; align-self: center; }
+    .shotgrid { grid-template-columns: repeat(4, 1fr); }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -438,76 +426,56 @@
   <section class="screenshots" aria-labelledby="shots-title">
     <h2 id="shots-title">See it in action</h2>
     <p class="screenshots-intro">Every screen, straight from the app — scroll through the tour.</p>
-    <div class="walkthrough">
-      <div class="walk-row">
+    <div class="shotgrid">
+      <div class="shot">
         <img src="screenshots/01-today.png" width="760" height="1651" loading="lazy" alt="The Today tab: the session to do with its exercises and the start workout button">
-        <div class="walk-text">
-          <h3>Today's session, ready to go</h3>
-          <p>Today shows the session to do and starts it with one tap; the workout is laid out set by set, and the rest timer runs itself.</p>
-        </div>
+        <h3>Today's session, ready to go</h3>
+        <p>The session to do, started with one tap; the rest timer runs itself.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/02-body.png" width="760" height="1651" loading="lazy" alt="The Body tab: body weight, body fat and tape measurements, each with its latest value, change and chart">
-        <div class="walk-text">
-          <h3>Track your body too</h3>
-          <p>Weight, body fat and measurements, each with its trend; entries can be saved to Apple Health.</p>
-        </div>
+        <h3>Track your body too</h3>
+        <p>Weight, body fat and measurements, each with its trend; entries can be saved to Apple Health.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/03-workout.png" width="760" height="1651" loading="lazy" alt="A workout under way: the set logged in a pop-up over the exercise">
-        <div class="walk-text">
-          <h3>Log every set in seconds</h3>
-          <p>One tap per set, starting from what you lifted last time; supersets, rep ranges, timed holds and cardio are built in.</p>
-        </div>
+        <h3>Log every set in seconds</h3>
+        <p>One tap per set, starting from what you lifted last time.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/04-evaluation.png" width="760" height="1651" loading="lazy" alt="The workout evaluation after finishing, showing what improved and what to aim for next time">
-        <div class="walk-text">
-          <h3>See how it went</h3>
-          <p>After each workout you see what improved and what to aim for next time.</p>
-        </div>
+        <h3>See how it went</h3>
+        <p>After each workout, what improved and what to aim for next.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/05-next-cycle.png" width="760" height="1651" loading="lazy" alt="The next cycle review, each exercise's new weights prescribed from what was logged, with its ticks">
-        <div class="walk-text">
-          <h3>Progress every cycle</h3>
-          <p>The next cycle prescribes itself from what you logged: linear, double progression or RPE-based, with deloads when you need them.</p>
-        </div>
+        <h3>Progress every cycle</h3>
+        <p>The next cycle prescribes itself from what you logged.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/06-change-day.png" width="760" height="1651" loading="lazy" alt="The Change day sheet: a session swapped with another day, with its what-changes preview">
-        <div class="walk-text">
-          <h3>Too tired? Change day</h3>
-          <p>Swap, move, push or skip a session and the plan adapts; a cycle can be any length, not just a week.</p>
-        </div>
+        <h3>Too tired? Change day</h3>
+        <p>Swap, move, push or skip — and the plan adapts.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/07-calendar.png" width="760" height="1651" loading="lazy" alt="The calendar with done, partly done, missed and planned sessions">
-        <div class="walk-text">
-          <h3>Never miss a session</h3>
-          <p>The calendar shows every session — done, partly done, missed or planned — with the whole history behind it.</p>
-        </div>
+        <h3>Never miss a session</h3>
+        <p>Done, partly done, missed or planned, with the whole history.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/08-programs.png" width="760" height="1651" loading="lazy" alt="The Programs tab listing the training programs">
-        <div class="walk-text">
-          <h3>Programs that adapt to you</h3>
-          <p>Simple repeating programs or advanced blocks, with intermediate and advanced templates to start from and unlimited programs.</p>
-        </div>
+        <h3>Programs that adapt to you</h3>
+        <p>Repeating programs, advanced blocks and templates to start from.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/09-board.png" width="760" height="1651" loading="lazy" alt="The program board laying the training cycle out day by day">
-        <div class="walk-text">
-          <h3>Your cycle, at a glance</h3>
-          <p>Every day's work laid out on one board: drag sessions to the days you train, add exercises from a library of hundreds, each with step-by-step instructions.</p>
-        </div>
+        <h3>Your cycle, at a glance</h3>
+        <p>Drag sessions to the days you train; hundreds of exercises to add.</p>
       </div>
-      <div class="walk-row">
+      <div class="shot">
         <img src="screenshots/10-periodization.png" width="760" height="1651" loading="lazy" alt="The periodization model picker: linear, block, undulating and pendulum, each with its intensity curve">
-        <div class="walk-text">
-          <h3>Periodize like a coach</h3>
-          <p>Linear, block, undulating or pendulum, each with its intensity curve and loads from your 1RM.</p>
-        </div>
+        <h3>Periodize like a coach</h3>
+        <p>Linear, block, undulating or pendulum, each with its intensity curve.</p>
       </div>
     </div>
   </section>
@@ -569,11 +537,6 @@
         <h3>Yearly</h3>
         <p class="plan-price">CHF 50.00<span class="plan-period"> / year</span></p>
         <p class="plan-deal"><span class="badge">2 months free</span> &asymp; CHF 4.17 / month</p>
-      </div>
-      <div class="plan">
-        <h3>Gym members</h3>
-        <p class="plan-price">CHF 1.00<span class="plan-period"> / month</span></p>
-        <p class="plan-deal">With your gym's offer code, redeemed in the app or the App Store.</p>
       </div>
     </div>
     <p class="fineprint">Subscriptions are charged to your Apple ID account and renew automatically unless cancelled at least 24 hours before the period ends; manage or cancel anytime in your App Store settings. <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a> &middot; <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a></p>

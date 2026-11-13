@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 131 729 729">
+  <style>
+    .g { fill: #8C9799; }
+    .t { fill: #4E8E92; }
+    .c { fill: #2E3640; }
+    .s { stroke: #2E3640; }
+    @media (prefers-color-scheme: dark) {
+      .g { fill: #909D9E; }
+      .t { fill: #76ABAE; }
+      .c { fill: #EEEEEE; }
+      .s { stroke: #EEEEEE; }
+    }
+  </style>
+  <rect class="g" x="212" y="620" width="150" height="240" rx="42"/>
+  <rect class="t" x="437" y="470" width="150" height="390" rx="42"/>
+  <rect class="c" x="662" y="320" width="150" height="540" rx="42"/>
+  <polyline class="s" points="625,260 737,160 849,260" fill="none" stroke-width="58"
+    stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

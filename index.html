@@ -3,561 +3,664 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TrainingPlanner: Progressive Overload Planner</title>
-<meta name="description" content="Plan your training in cycles, log every set in seconds, and let your weights go up the right way. Free to start; Pro adds structured plans and automatic progression.">
+<title>TrainingPlanner: Progressive Overload Planner for iPhone</title>
+<meta name="description" content="Plan your training in cycles, log every set in seconds, and let your
+  weights go up the right way. Free to start, no account, nothing tracked. Pro adds structured plans and
+  automatic progression.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F5F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222831">
-<meta property="og:title" content="TrainingPlanner: Progressive Overload Planner">
-<meta property="og:description" content="Plan your training in cycles, log every set in seconds, and let your weights go up the right way. Free to start; Pro adds structured plans and automatic progression.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='180.5%20131%20729%20729'%3E%3Cstyle%3E@media(prefers-color-scheme:dark)%7B.gf%7Bfill:%23909D9E%7D.tf%7Bfill:%2376ABAE%7D.cf%7Bfill:%23EEEEEE%7D.cs%7Bstroke:%23EEEEEE%7D%7D%3C/style%3E%3Crect%20class='gf'%20x='212'%20y='620'%20width='150'%20height='240'%20rx='42'%20fill='%238C9799'/%3E%3Crect%20class='tf'%20x='437'%20y='470'%20width='150'%20height='390'%20rx='42'%20fill='%234E8E92'/%3E%3Crect%20class='cf'%20x='662'%20y='320'%20width='150'%20height='540'%20rx='42'%20fill='%232E3640'/%3E%3Cpolyline%20class='cs'%20points='625,260%20737,160%20849,260'%20fill='none'%20stroke='%232E3640'%20stroke-width='58'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
-<style>
-  :root {
-    color-scheme: light dark;
-    --bg-top: #F4F5F6;
-    --bg-bottom: #E3E7E8;
-    --text: #2E3640;
-    --accent: #3A7478;
-    --on-accent: #FFFFFF;
-    --mark-grey: #8C9799;
-    --mark-teal: #4E8E92;
-    --mark-charcoal: #2E3640;
-    --progress: #40A02B;
-    --card-bg: rgba(255, 255, 255, 0.72);
-    --card-border: rgba(46, 54, 64, 0.12);
-    --card-shadow: 0 10px 30px -14px rgba(46, 54, 64, 0.12);
-    --icon-bg: rgba(78, 142, 146, 0.12);
-    --panel-bg: rgba(78, 142, 146, 0.09);
-    --panel-border: rgba(78, 142, 146, 0.35);
-    --glow-color: rgba(78, 142, 146, 0.3);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg-top: #222831;
-      --bg-bottom: #31363F;
-      --text: #EEEEEE;
-      --accent: #5A9599;
-      --mark-grey: #909D9E;
-      --mark-teal: #76ABAE;
-      --mark-charcoal: #EEEEEE;
-      --progress: #A6E3A1;
-      --card-bg: rgba(255, 255, 255, 0.06);
-      --card-border: rgba(238, 238, 238, 0.14);
-      --card-shadow: none;
-      --icon-bg: rgba(118, 171, 174, 0.16);
-      --panel-bg: #1A1E24;
-      --panel-border: rgba(118, 171, 174, 0.3);
-      --glow-color: rgba(118, 171, 174, 0.22);
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-    color: var(--text);
-    background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-    min-height: 100vh;
-  }
-  ::selection {
-    background: #4E8E92;
-    color: #FFFFFF;
-  }
-  @media (prefers-color-scheme: dark) {
-    ::selection {
-      background: #76ABAE;
-      color: #222831;
-    }
-  }
-  :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-  .hero {
-    max-width: 46rem;
-    margin: 0 auto;
-    padding: 6rem 1.25rem 4.5rem;
-    text-align: center;
-  }
-  .mark-wrap {
-    position: relative;
-    width: fit-content;
-    margin: 0 auto 3rem;
-  }
-  .mark-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -22%;
-    background: radial-gradient(closest-side, var(--glow-color), transparent 72%);
-    border-radius: 50%;
-    animation: fade-in 0.9s ease-out both;
-  }
-  .mark {
-    position: relative;
-    display: block;
-    width: clamp(7.5rem, 26vw, 10rem);
-    height: auto;
-  }
-  .mark rect {
-    animation: bar-lift 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  .mark rect:nth-of-type(1) { --lift: 430px; }
-  .mark rect:nth-of-type(2) { --lift: 580px; animation-delay: 0.15s; }
-  .mark rect:nth-of-type(3) { --lift: 730px; animation-delay: 0.3s; }
-  .mark polyline {
-    animation: chevron-rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
-  }
-  @keyframes bar-lift {
-    from { transform: translateY(var(--lift, 430px)); }
-    to { transform: translateY(0); }
-  }
-  @keyframes chevron-rise {
-    from { transform: translateY(56px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  h1 {
-    margin: 0 0 0.4rem;
-    font-size: clamp(2.2rem, 8vw, 4rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
-  }
-  .subtitle {
-    margin: 0 0 2.25rem;
-    font-size: clamp(1.2rem, 3.5vw, 1.35rem);
-    font-weight: 700;
-    color: var(--accent);
-  }
-  .tagline {
-    max-width: 30rem;
-    margin: 0 auto 1.5rem;
-    font-size: clamp(1.7rem, 5vw, 2.1rem);
-    font-weight: 700;
-    line-height: 1.25;
-    text-wrap: balance;
-  }
-  .tagline .progress { color: var(--progress); }
-  .promo {
-    max-width: 34rem;
-    margin: 0 auto 2.5rem;
-    font-size: 1.1rem;
-  }
-  .cta {
-    display: inline-block;
-    padding: 0.9em 1.9em;
-    background: var(--accent);
-    color: var(--on-accent);
-    font-size: 1.25rem;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 14px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  .cta:hover,
-  .cta:focus-visible {
-    background: var(--text);
-    color: var(--bg-top);
-  }
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.5rem;
-    max-width: 64rem;
-    margin: 0 auto 6rem;
-    padding: 0 1.25rem;
-  }
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 1.9rem 1.75rem;
-    box-shadow: var(--card-shadow);
-  }
-  .card-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin-bottom: 1.1rem;
-    border-radius: 10px;
-    background: var(--icon-bg);
-    color: var(--accent);
-  }
-  .card-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  .card h2 {
-    margin: 0 0 0.6rem;
-    font-size: 1.35rem;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-  }
-  .card p { margin: 0; }
-  .extras {
-    max-width: 52rem;
-    margin: 0 auto 6rem;
-    padding: 0 1.25rem;
-  }
-  .extras-lead {
-    margin: 0;
-    font-size: 1.2rem;
-    font-weight: 700;
-  }
-  .chips {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 1.1rem 0 0;
-    padding: 0;
-  }
-  .chips li {
-    padding: 0.4rem 1.05rem;
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    background: var(--card-bg);
-    font-size: 0.95rem;
-    font-weight: 600;
-  }
-  .extras-detail {
-    margin: 1.4rem 0 0;
-    font-size: 1rem;
-  }
-  .screenshots {
-    max-width: 64rem;
-    margin: 0 auto 6rem;
-    padding: 0 1.25rem;
-  }
-  .screenshots h2 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.7rem, 5vw, 2.1rem);
-    letter-spacing: -0.01em;
-  }
-  .screenshots-intro {
-    margin: 0 0 2.25rem;
-    font-size: 1.1rem;
-  }
-  .shotgrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem 1.25rem;
-  }
-  .shot img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 16px;
-  }
-  .shot h3 {
-    margin: 0.75rem 0 0.25rem;
-    font-size: 1rem;
-    letter-spacing: -0.01em;
-  }
-  .shot p { margin: 0; }
-  .pro {
-    width: min(50rem, calc(100% - 2.5rem));
-    margin: 0 auto 7rem;
-    padding: 2.25rem 1.5rem;
-    background: var(--panel-bg);
-    border: 1px solid var(--panel-border);
-    border-radius: 16px;
-  }
-  .pro h2 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.7rem, 5vw, 2.1rem);
-    letter-spacing: -0.01em;
-  }
-  .pro > p { margin: 0; }
-  .plans {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
-    gap: 1.5rem;
-    margin: 1.75rem 0 0;
-  }
-  .plan {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 16px;
-    padding: 1.5rem 1.4rem;
-  }
-  .plan-best {
-    background: var(--icon-bg);
-    border-color: var(--accent);
-  }
-  .plan h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.1rem;
-  }
-  .plan-price {
-    margin: 0;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-  }
-  .plan-period {
-    font-size: 1rem;
-    font-weight: 600;
-  }
-  .plan-deal {
-    margin: 0.7rem 0 0;
-    font-size: 0.95rem;
-  }
-  .badge {
-    display: inline-block;
-    padding: 0.15rem 0.7rem;
-    margin: 0 0.35rem 0.35rem 0;
-    border: 1px solid var(--card-border);
-    border-radius: 999px;
-    background: var(--card-bg);
-    font-size: 0.85rem;
-    font-weight: 700;
-  }
-  .pro .fineprint {
-    margin: 1.4rem 0 0;
-    font-size: 0.9rem;
-    opacity: 0.85;
-  }
-  .fineprint a {
-    color: var(--text);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .ticks-lead {
-    margin: 1.5rem 0 0 !important;
-    font-weight: 600;
-  }
-  .ticks {
-    list-style: none;
-    margin: 0.9rem 0 0;
-    padding: 0;
-  }
-  .ticks li {
-    position: relative;
-    padding-left: 2rem;
-    margin: 0 0 0.75rem;
-  }
-  .ticks li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--progress);
-    font-weight: 700;
-  }
-  footer {
-    max-width: 64rem;
-    margin: 0 auto;
-    padding: 3rem 1.25rem 3.5rem;
-    text-align: center;
-    border-top: 1px solid var(--card-border);
-  }
-  footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem 2.75rem;
-    margin-bottom: 1.1rem;
-  }
-  footer nav a {
-    color: var(--accent);
-    font-size: 1.2rem;
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  footer nav a:hover,
-  footer nav a:focus-visible { color: var(--text); }
-  .copyright {
-    margin: 0;
-    font-size: 0.95rem;
-    opacity: 0.8;
-  }
-  @media (min-width: 48rem) {
-    .pro { padding: 2.75rem 2.5rem; }
-    .ticks {
-      column-count: 2;
-      column-gap: 2.75rem;
-    }
-    .ticks li { break-inside: avoid; }
-    .shotgrid { grid-template-columns: repeat(4, 1fr); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .mark rect,
-    .mark rect:nth-of-type(1),
-    .mark rect:nth-of-type(2),
-    .mark rect:nth-of-type(3),
-    .mark polyline {
-      animation: fade-in 0.6s ease-out both;
-    }
-    .cta { transition: none; }
-  }
-</style>
+<meta property="og:site_name" content="TrainingPlanner">
+<meta property="og:title" content="TrainingPlanner: Train in phases. Progress every cycle.">
+<meta property="og:description" content="Plan your training in cycles, log every set in seconds, and let your
+  weights go up the right way. Free to start; Pro adds structured plans and automatic progression.">
+<!-- Make this an absolute URL once the site has its domain. -->
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "TrainingPlanner",
+  "alternateName": "TrainingPlanner: Progressive Overload Planner",
+  "operatingSystem": "iOS 18.2 or later",
+  "applicationCategory": "HealthApplication",
+  "url": "https://apps.apple.com/us/app/trainingplanner-pro/id6824840650",
+  "installUrl": "https://apps.apple.com/us/app/trainingplanner-pro/id6824840650",
+  "description": "Plan your training in cycles, log every set in seconds, and let your weights go up.",
+  "author": { "@type": "Person", "name": "Adam Marton" },
+  "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "CHF", "name": "Free" },
+    { "@type": "Offer", "price": "5.00", "priceCurrency": "CHF", "name": "TrainingPlanner Pro, monthly" },
+    { "@type": "Offer", "price": "50.00", "priceCurrency": "CHF", "name": "TrainingPlanner Pro, yearly" }
+  ]
+}
+</script>
 </head>
 <body>
 
-<header class="hero">
-  <div class="mark-wrap">
-    <svg class="mark" viewBox="0 0 1024 1024" role="img" aria-label="TrainingPlanner mark: three rising bars with an upward chevron above the tallest" focusable="false">
-      <rect x="212" y="620" width="150" height="240" rx="42" style="fill: var(--mark-grey);"/>
-      <rect x="437" y="470" width="150" height="390" rx="42" style="fill: var(--mark-teal);"/>
-      <rect x="662" y="320" width="150" height="540" rx="42" style="fill: var(--mark-charcoal);"/>
-      <polyline points="625,260 737,160 849,260" fill="none" style="stroke: var(--mark-charcoal);" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="TrainingPlanner, back to top">
+      <svg class="mark" viewBox="180 131 729 729" aria-hidden="true" focusable="false">
+        <rect x="212" y="620" width="150" height="240" rx="42" style="fill: var(--mark-grey);"/>
+        <rect x="437" y="470" width="150" height="390" rx="42" style="fill: var(--mark-teal);"/>
+        <rect x="662" y="320" width="150" height="540" rx="42" style="fill: var(--mark-charcoal);"/>
+        <polyline points="625,260 737,160 849,260" fill="none" style="stroke: var(--mark-charcoal);"
+          stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      TrainingPlanner
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#pro">Pro</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary" href="https://apps.apple.com/us/app/trainingplanner-pro/id6824840650">
+      Get the app
+    </a>
   </div>
-  <h1>TrainingPlanner</h1>
-  <p class="subtitle">Progressive Overload Planner</p>
-  <p class="tagline">Train in phases. <span class="progress">Progress every cycle.</span></p>
-  <p class="promo">Plan your training in cycles, log every set in seconds, and let your weights go up the right way. Free to start; Pro adds structured plans and automatic progression.</p>
-  <!-- TODO: replace with the App Store URL when live -->
-  <a class="cta" href="#">Download on the App Store</a>
 </header>
 
-<main>
-  <section class="screenshots" aria-labelledby="shots-title">
-    <h2 id="shots-title">See it in action</h2>
-    <p class="screenshots-intro">Every screen, straight from the app — scroll through the tour.</p>
-    <div class="shotgrid">
-      <div class="shot">
-        <img src="screenshots/01-today.png" width="760" height="1651" loading="lazy" alt="The Today tab: the session to do with its exercises and the start workout button">
-        <h3>Today's session, ready to go</h3>
-        <p>The session to do, started with one tap; the rest timer runs itself.</p>
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <svg class="mark mark-hero" viewBox="180 131 729 729" role="img" focusable="false"
+          aria-label="TrainingPlanner mark: three rising bars with an upward chevron above the tallest">
+          <rect x="212" y="620" width="150" height="240" rx="42" style="fill: var(--mark-grey);"/>
+          <rect x="437" y="470" width="150" height="390" rx="42" style="fill: var(--mark-teal);"/>
+          <rect x="662" y="320" width="150" height="540" rx="42" style="fill: var(--mark-charcoal);"/>
+          <polyline points="625,260 737,160 849,260" fill="none" style="stroke: var(--mark-charcoal);"
+            stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p class="eyebrow">Progressive overload planner for iPhone</p>
+        <h1>Train in phases. <span class="progress">Progress every cycle.</span></h1>
+        <p class="lede">TrainingPlanner turns a training plan into a workout you can follow, set by set,
+          and helps your weights and reps go up over time.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/us/app/trainingplanner-pro/id6824840650">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 17v2a2 2 0 002 2h10a2 2 0 002-2v-2" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download on the App Store
+          </a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <ul class="trust" aria-label="Good to know">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>Free to start</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>No account</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>No ads, no tracking</li>
+        </ul>
       </div>
-      <div class="shot">
-        <img src="screenshots/02-body.png" width="760" height="1651" loading="lazy" alt="The Body tab: body weight, body fat and tape measurements, each with its latest value, change and chart">
-        <h3>Track your body too</h3>
-        <p>Weight, body fat and measurements, each with its trend; entries can be saved to Apple Health.</p>
+      <div class="hero-visual">
+        <div class="phone phone-main">
+          <img src="screenshots/01-today.jpg" width="780" height="1695" fetchpriority="high"
+            alt="The Today tab: the next session, recovery and streak at a glance, the current program's
+              progress, and today's Push session with its Start button">
+        </div>
+        <div class="phone phone-back" aria-hidden="true">
+          <img src="screenshots/03-workout-rest.jpg" width="780" height="1695" loading="lazy" alt="">
+        </div>
       </div>
-      <div class="shot">
-        <img src="screenshots/03-workout.png" width="760" height="1651" loading="lazy" alt="A workout under way: the set logged in a pop-up over the exercise">
+    </div>
+  </section>
+
+  <section class="facts" aria-label="At a glance">
+    <div class="wrap">
+      <ul>
+        <li><strong>Any length</strong><span>A cycle is as long as you train it, not just a week</span></li>
+        <li><strong>Hundreds</strong><span>of exercises, each with step-by-step instructions</span></li>
+        <li><strong>On device</strong><span>Coaching with Apple Intelligence; nothing leaves your
+          iPhone</span></li>
+        <li><strong>kg or lb</strong><span>Weights in kg or lb, distances in km or miles</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Plan it once. Train it. Watch the next cycle write itself.</h2>
+      </div>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Plan on a board</h3>
+          <p>Lay out your training cycle day by day. Drag sessions to the days you train, add exercises
+            from a library of hundreds, and set the sets, reps, rest and weight for each.</p>
+          <ul>
+            <li>Supersets, rep ranges, timed holds and cardio are built in.</li>
+            <li>Start from scratch or from a template, and keep what works as a cycle of your own.</li>
+            <li>The board counts the work sets per muscle, so you see what a cycle leaves out.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/08-board.jpg" width="780" height="1695" loading="lazy"
+              alt="The program board: Day 1 with the Push session's exercises and Day 2 with Legs,
+                work sets per muscle above them">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/07-programs.jpg" width="780" height="1695" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Train without thinking about it</h3>
+          <p>Today shows the session to do and starts it with one tap. Every set starts from what you
+            lifted last time; log it in a pop-up, and the rest timer runs by itself.</p>
+          <ul>
+            <li>The first set shows a warm-up ramp beside the weight, and the plates for each side.</li>
+            <li>Beat last time: each set shows what you did before and how this one compares.</li>
+            <li>A set that beats your best is marked with a trophy as you log it.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/02-log-set.jpg" width="780" height="1695" loading="lazy"
+              alt="Logging a bench press top set: 110 kg for 5 reps, the warm-up ramp, plates per side,
+                an RPE row and the Log set button">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/03-workout-rest.jpg" width="780" height="1695" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>Progress every cycle</h3>
+          <p>After each workout you see what improved and what to aim for next time. When a cycle ends,
+            the next one is prescribed from what you logged: up where every rep was done, repeated where
+            reps were missed.</p>
+          <ul>
+            <li>Linear, double progression or RPE-based, for the whole program or per exercise.</li>
+            <li>Every change is explained, and you accept, adjust or keep the plan as it was.</li>
+            <li>When effort climbs while the lifts fall back, Today suggests a deload.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/05-next-cycle.jpg" width="780" height="1695" loading="lazy"
+              alt="The Next Cycle review: bench press moves from 110 kg to 112.5 kg because every rep was
+                done, the other exercises stay as planned">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/04-evaluation.jpg" width="780" height="1695" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Features</p>
+        <h2>Everything a training log should do, and a few things it should have done long ago.</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>
+              <path d="M9 16l2 2 4-4"/>
+            </svg>
+          </span>
+          <h3>Too tired? Change day</h3>
+          <p>Train another session today, swap with another day, move only this one, push everything
+            later or skip it. You see what moves before it does.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-7-4.6-7-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 017 3.5C19 16.4 12 21 12 21z"/>
+              <path d="M7 12h3l1.5-3 2 6 1.5-3h3"/>
+            </svg>
+          </span>
+          <h3>Recovery, muscle by muscle</h3>
+          <p>A body figure on Today glows warm where last week's sets still weigh and cools as each
+            muscle recovers. Tell it how you feel, and the estimate learns how fast you bounce back.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 4h8v5a4 4 0 01-8 0V4z"/><path d="M8 6H5a3 3 0 003 3M16 6h3a3 3 0 01-3 3"/>
+              <path d="M12 13v4M9 21h6M10 17h4"/>
+            </svg>
+          </span>
+          <h3>Personal records</h3>
+          <p>Heaviest weight, best estimated one-rep max, most reps at a weight, longest hold. Each
+            exercise keeps its records with the day they were set.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 20v-6M12 20V9M19 20V4"/>
+            </svg>
+          </span>
+          <h3>Your weeks and your streak</h3>
+          <p>This week's workouts, sets and volume above the calendar, a bar for each of the last twelve
+            weeks, and hard sets per muscle against your weekly range.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="2.5"/><path d="M8 10h8l-1 5h-6zM10 15v6M14 15v6"/>
+            </svg>
+          </span>
+          <h3>Track your body too</h3>
+          <p>Body weight, body fat, tape measurements and progress photos, each with its trend, and a
+            before and after for every program.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 14c2-6 4-6 6 0s4 6 6 0 4-6 6 0"/>
+            </svg>
+          </span>
+          <h3>Periodization in plain words</h3>
+          <p>Linear, block, undulating, pendulum and more. Each model says what every phase gets in sets,
+            reps and load from your one-rep max, and tells you whether your cycles follow it.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>
+              <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>
+            </svg>
+          </span>
+          <h3>A coach that knows your day</h3>
+          <p>Ask "What should I train today?" The on-device coach, with Apple Intelligence on supported
+            iPhones, sees your session, your recovery and your records, and can prescribe the next cycle
+            for you.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/>
+            </svg>
+          </span>
+          <h3>Siri and Shortcuts</h3>
+          <p>"Start my workout in TrainingPlanner" opens today's session ready to log. Ask what's planned
+            or how recovered you are, and put any action on the Action button.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+            </svg>
+          </span>
+          <h3>Switching from Hevy or Strong?</h3>
+          <p>Import the CSV they export and every workout comes in with its exercises and sets. Your
+            records, last-time comparisons, weeks and streak carry on from day one.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0112 0"/>
+              <circle cx="17" cy="9" r="2.5"/><path d="M15.5 14.5A5 5 0 0121 19"/>
+            </svg>
+          </span>
+          <h3>Work with a trainer</h3>
+          <p>Send your trainer a report of your training and take the programs and adjustments they send
+            back, as files, through whatever app you already share with.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9v6M18 9v6M3 10.5v3M21 10.5v3M6 12h12"/>
+            </svg>
+          </span>
+          <h3>Train the way you train</h3>
+          <p>Pyramids, drop sets, rest-pause and myo-reps. Freestyle workouts when there is no plan, and
+            any logged workout can be trained again.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/>
+              <rect x="3" y="13" width="8" height="8" rx="2"/>
+              <rect x="13" y="13" width="8" height="8" rx="2"/>
+            </svg>
+          </span>
+          <h3>On your Home Screen</h3>
+          <p>A widget with today's session and your program's progress, the rest timer as a Live Activity,
+            and a plate calculator for barbell lifts.</p>
+          <span class="tag">Pro</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens" class="section gallery" aria-labelledby="screens-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Screens</p>
+        <h2 id="screens-title">Straight from the app</h2>
+        <p>Scroll sideways. Dark here; the app follows your iPhone's look, with light and dark themes.</p>
+      </div>
+    </div>
+    <ul class="strip">
+      <li>
+        <div class="phone">
+          <img src="screenshots/12-workout.jpg" width="780" height="1695" loading="lazy"
+            alt="A workout under way: bench press with two sets done, the superset below it and the Log
+              next set button">
+        </div>
         <h3>Log every set in seconds</h3>
-        <p>One tap per set, starting from what you lifted last time.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/04-evaluation.png" width="760" height="1651" loading="lazy" alt="The workout evaluation after finishing, showing what improved and what to aim for next time">
+        <p>One tap per set, starting from last time.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/04-evaluation.jpg" width="780" height="1695" loading="lazy"
+            alt="How it went: sets, hard sets, average RPE and time, with the muscles trained on a body
+              figure">
+        </div>
         <h3>See how it went</h3>
-        <p>After each workout, what improved and what to aim for next.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/05-next-cycle.png" width="760" height="1651" loading="lazy" alt="The next cycle review, each exercise's new weights prescribed from what was logged, with its ticks">
-        <h3>Progress every cycle</h3>
-        <p>The next cycle prescribes itself from what you logged.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/06-change-day.png" width="760" height="1651" loading="lazy" alt="The Change day sheet: a session swapped with another day, with its what-changes preview">
+        <p>Sets, effort and the muscles trained, against the last cycle.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/11-change-day.jpg" width="780" height="1695" loading="lazy"
+            alt="The Change day sheet: swap Push with Legs, with a preview of what changes">
+        </div>
         <h3>Too tired? Change day</h3>
-        <p>Swap, move, push or skip — and the plan adapts.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/07-calendar.png" width="760" height="1651" loading="lazy" alt="The calendar with done, partly done, missed and planned sessions">
+        <p>Swap, move, push or skip, and see what changes first.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/06-calendar.jpg" width="780" height="1695" loading="lazy"
+            alt="The training calendar: this week's workouts and streak, hard sets per muscle and the
+              month with planned and done days">
+        </div>
         <h3>Never miss a session</h3>
-        <p>Done, partly done, missed or planned, with the whole history.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/08-programs.png" width="760" height="1651" loading="lazy" alt="The Programs tab listing the training programs">
-        <h3>Programs that adapt to you</h3>
-        <p>Repeating programs, advanced blocks and templates to start from.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/09-board.png" width="760" height="1651" loading="lazy" alt="The program board laying the training cycle out day by day">
-        <h3>Your cycle, at a glance</h3>
-        <p>Drag sessions to the days you train; hundreds of exercises to add.</p>
-      </div>
-      <div class="shot">
-        <img src="screenshots/10-periodization.png" width="760" height="1651" loading="lazy" alt="The periodization model picker: linear, block, undulating and pendulum, each with its intensity curve">
+        <p>Your weeks, your streak and the whole history.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/10-body.jpg" width="780" height="1695" loading="lazy"
+            alt="The Body tab: body weight, body fat, chest, waist, arm and thigh, each with its change
+              and a small chart">
+        </div>
+        <h3>Track your body too</h3>
+        <p>Weight, body fat and measurements, each with its trend.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/09-periodization.jpg" width="780" height="1695" loading="lazy"
+            alt="Periodization models: daily undulating, undulating by cycle and pendulum, each with its
+              load curve">
+        </div>
         <h3>Periodize like a coach</h3>
-        <p>Linear, block, undulating or pendulum, each with its intensity curve.</p>
+        <p>Each model with its load curve, session by session.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/07-programs.jpg" width="780" height="1695" loading="lazy"
+            alt="The Programs tab: the current program with its progress, and the library of exercises,
+              records, cycles and completed programs">
+        </div>
+        <h3>Programs that adapt to you</h3>
+        <p>Pause, continue, finish, and start the next one.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/01-today.jpg" width="780" height="1695" loading="lazy"
+            alt="The Today tab with the next session, recovery and streak at the top">
+        </div>
+        <h3>Today, at a glance</h3>
+        <p>The next session, how recovered you are, your streak.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="privacy" class="section privacy">
+    <div class="wrap">
+      <div class="panel reveal">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2>Your data stays yours.</h2>
+          <p class="muted" style="margin-top: 1rem; font-size: 1.1rem;">No accounts, no ads, no analytics
+            and no tracking. The App Store privacy label reads "Data Not Collected", and it means it.</p>
+        </div>
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 17h2"/>
+            </svg>
+            <div><strong>Kept on your iPhone</strong><span>and in your private iCloud, in sync across your
+              devices. Nothing goes to a server of ours, because there isn't one.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>
+            </svg>
+            <div><strong>Coaching on the device</strong><span>with Apple Intelligence. Your plan and your
+              log never leave the phone to be read by a model.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 21s-7-4.6-7-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 017 3.5C19 16.4 12 21 12 21z"/>
+            </svg>
+            <div><strong>Apple Health, if you want it</strong><span>Finished workouts, body weight, body fat
+              and waist can be saved to Health. You choose what.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
+            </svg>
+            <div><strong>Yours to take along</strong><span>Export your whole log as CSV at any time.</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
-  <div class="features">
-    <section class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3.5" y="4" width="17" height="16" rx="2.5"/>
-          <path d="M9.2 4v16"/>
-          <path d="M14.8 4v16"/>
-        </svg>
+
+  <section id="pro" class="section pro">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Free and Pro</p>
+        <h2>Start free. Go Pro when your training gets structured.</h2>
+        <p>The free app is a complete training log. Pro is for plans with phases, deloads and automatic
+          progression.</p>
       </div>
-      <h2>Plan on a board</h2>
-      <p>Lay out your training cycle day by day and set the sets, reps, rest and weight for each. A cycle can be any length, not just a week.</p>
-    </section>
-    <section class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="13.5" r="7"/>
-          <path d="M10 3h4"/>
-          <path d="M12 3v3.5"/>
-          <path d="M12 13.5l2.8-2.8"/>
-        </svg>
+      <div class="compare">
+        <div class="tier reveal">
+          <header><h3>Free</h3><span>Forever</span></header>
+          <p>One repeating plan, with everything you need to follow it.</p>
+          <ul class="ticks">
+            <li>Full logging with the rest timer, alerts and the screen kept on</li>
+            <li>Every set starts from last time's weight and reps</li>
+            <li>Straight sets, rep ranges, holds, cardio and supersets</li>
+            <li>Personal records, workout notes, your weeks and streak</li>
+            <li>Calendar with the whole history, Apple Health and iCloud sync</li>
+            <li>Exercise library with guides, beginner templates</li>
+            <li>Change day, freestyle workouts, train any workout again</li>
+            <li>Import from Hevy or Strong, Siri and Shortcuts</li>
+            <li>Send your trainer a report and take the plans they send back</li>
+          </ul>
+        </div>
+        <div class="tier tier-pro reveal">
+          <header><h3>TrainingPlanner Pro</h3><span>Everything in Free, plus</span></header>
+          <p>For structured training, and for the next cycle to write itself.</p>
+          <ul class="ticks">
+            <li>Structured plans: phases, deloads and as many cycles as you like</li>
+            <li>Automatic progression: linear, double progression and RPE-based, with the next cycle
+              suggested from what you logged</li>
+            <li>Periodization: linear, undulating, block and more, with loads from your 1RM</li>
+            <li>Pyramids, drop sets, rest-pause and myo-reps</li>
+            <li>Intermediate and advanced templates, and unlimited programs and cycles</li>
+            <li>Workout insights: each exercise and each muscle against the last cycle, full strength
+              history and estimated 1RM charts</li>
+            <li>Body tracking with progress photos and a before and after for each program</li>
+            <li>The on-device coach and program designer with Apple Intelligence</li>
+            <li>Trainer mode: keep your clients' reports and send them programs and adjustments</li>
+            <li>Plate calculator, Home Screen widget, rest timer Live Activity and every theme</li>
+          </ul>
+        </div>
       </div>
-      <h2>Train without thinking about it</h2>
-      <p>Every set starts from what you lifted last time; log it in a pop-up, and the rest timer runs by itself. Too tired? Move the session to tomorrow, switch it with another day, or skip an exercise just this once.</p>
-    </section>
-    <section class="card">
-      <div class="card-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5.5 20v-6"/>
-          <path d="M12 20v-11"/>
-          <path d="M18.5 20v-16"/>
-        </svg>
+
+      <div class="plans">
+        <div class="plan">
+          <h3>Monthly</h3>
+          <p class="plan-price">CHF 5.00 <small>/ month</small></p>
+          <p class="plan-note">Cancel any time.</p>
+        </div>
+        <div class="plan plan-best">
+          <span class="badge">2 months free</span>
+          <h3>Yearly</h3>
+          <p class="plan-price">CHF 50.00 <small>/ year</small></p>
+          <p class="plan-note">About CHF 4.17 a month.</p>
+        </div>
       </div>
-      <h2>See how it went</h2>
-      <p>The calendar shows every session, with the whole history behind it. Finished workouts can be saved to Apple Health.</p>
-    </section>
-  </div>
-  <div class="extras">
-    <p class="extras-lead">Behind the board:</p>
-    <ul class="chips">
-      <li>iCloud sync</li>
-      <li>Apple Health</li>
-      <li>On-device Apple Intelligence</li>
-      <li>Work with a trainer</li>
-    </ul>
-    <p class="extras-detail">iCloud keeps everything in sync on your devices, finished workouts and body entries can be saved to Apple Health, an on-device coach with Apple Intelligence (on supported iPhones) helps you plan, and you can work with a trainer (reports out, programs and adjustments back, as files).</p>
-  </div>
-  <section class="pro" aria-labelledby="pro-title">
-    <h2 id="pro-title">TrainingPlanner Pro</h2>
-    <p>Pro is a monthly or yearly subscription. Gym members can redeem their gym's code for the member price.</p>
-    <div class="plans">
-      <div class="plan">
-        <h3>Monthly</h3>
-        <p class="plan-price">CHF 5.00<span class="plan-period"> / month</span></p>
+      <p class="fineprint">Prices in Swiss francs; the App Store shows your country's. Gym members can
+        redeem their gym's code for the member price. Subscriptions are charged to your Apple Account and
+        renew automatically unless cancelled at least 24 hours before the period ends; manage or cancel
+        any time in your App Store settings.
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+        &middot; <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a></p>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Questions</p>
+        <h2>Before you download</h2>
       </div>
-      <div class="plan plan-best">
-        <h3>Yearly</h3>
-        <p class="plan-price">CHF 50.00<span class="plan-period"> / year</span></p>
-        <p class="plan-deal"><span class="badge">2 months free</span> &asymp; CHF 4.17 / month</p>
+      <div class="faq-list">
+        <details>
+          <summary>Is TrainingPlanner free?</summary>
+          <p>Yes. The free app follows one repeating plan with full logging, the rest timer, the calendar,
+            personal records, Apple Health, iCloud sync and the beginner templates, with no time limit.
+            Pro unlocks structured plans with phases and deloads, automatic progression and the rest of
+            the Pro list above.</p>
+        </details>
+        <details>
+          <summary>Which iPhones does it run on?</summary>
+          <p>Any iPhone on iOS 18.2 or later. The coach and program designer use Apple Intelligence, so
+            they need an iPhone that supports it; everything else works on every supported iPhone.</p>
+        </details>
+        <details>
+          <summary>Do I need an account or an internet connection?</summary>
+          <p>Neither. There are no accounts. Your training is kept on your iPhone and, if you're signed in
+            to iCloud, in your private iCloud database so it syncs to your other devices. Logging,
+            planning and Pro all work offline.</p>
+        </details>
+        <details>
+          <summary>Can I bring my history from another app?</summary>
+          <p>Yes. Import the CSV that Hevy or Strong exports, and every workout comes in with its exercises
+            and sets. Your records, last-time comparisons, weeks, streak and recovery estimate carry on
+            from day one. Importing the same file twice adds nothing.</p>
+        </details>
+        <details>
+          <summary>What if I miss a day?</summary>
+          <p>Open Change day. Train another session today, swap with another day, move only this session,
+            push everything later or skip it on purpose. The sheet shows what moves before you apply it,
+            and the plan keeps its order.</p>
+        </details>
+        <details>
+          <summary>I train with a coach. Does that work?</summary>
+          <p>Yes. Send your trainer a report of your training as a file, through AirDrop, Messages or Mail,
+            and take the programs and adjustments they send back. Trainers keep their clients' reports in
+            trainer mode, which is part of Pro.</p>
+        </details>
+        <details>
+          <summary>How do I cancel Pro?</summary>
+          <p>In your App Store subscription settings, at any time. Pro stays on until the end of the period
+            you paid for, and your programs and workouts are always kept.</p>
+        </details>
       </div>
     </div>
-    <p class="fineprint">Subscriptions are charged to your Apple ID account and renew automatically unless cancelled at least 24 hours before the period ends; manage or cancel anytime in your App Store settings. <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a> &middot; <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a></p>
-    <p class="ticks-lead">Everything in the free app, plus:</p>
-    <ul class="ticks">
-      <li>Structured plans: phases, deloads and as many cycles as you like</li>
-      <li>Automatic progression: linear, double progression and RPE-based, with the next cycle suggested from what you logged</li>
-      <li>Periodization: linear, undulating, block and more, with loads from your 1RM</li>
-      <li>Pyramids, drop sets, rest-pause and myo-reps</li>
-      <li>Intermediate and advanced templates, and unlimited programs</li>
-    </ul>
   </section>
+
+  <section class="section closing">
+    <div class="wrap">
+      <div class="panel reveal">
+        <svg class="mark" viewBox="180 131 729 729" aria-hidden="true" focusable="false">
+          <rect x="212" y="620" width="150" height="240" rx="42" style="fill: var(--mark-grey);"/>
+          <rect x="437" y="470" width="150" height="390" rx="42" style="fill: var(--mark-teal);"/>
+          <rect x="662" y="320" width="150" height="540" rx="42" style="fill: var(--mark-charcoal);"/>
+          <polyline points="625,260 737,160 849,260" fill="none" style="stroke: var(--mark-charcoal);"
+            stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h2>Start your next cycle.</h2>
+        <p>Free on the App Store. No account, nothing to set up, and your first plan is a template away.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://apps.apple.com/us/app/trainingplanner-pro/id6824840650">
+            Download on the App Store
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
-  <nav aria-label="Privacy and support">
-    <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a>
-    <a href="https://drew0ps.github.io/Training_Planner_Privacy/support.html">Support</a>
-  </nav>
-  <p class="copyright">&copy; 2026 Adam Marton</p>
+  <div class="wrap">
+    <nav aria-label="Privacy and support">
+      <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a>
+      <a href="https://drew0ps.github.io/Training_Planner_Privacy/support.html">Support</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+    </nav>
+    <p>&copy; 2026 Adam Marton</p>
+    <p class="legal">Exercise is safe for most people. If you have a health condition, check with your
+      doctor first, and stop if something hurts. Apple, iPhone, App Store, Apple Health and Siri are
+      trademarks of Apple Inc. Hevy and Strong are trademarks of their owners.</p>
+  </div>
 </footer>
+
+<script>
+  // Shows a hairline under the top bar once the page has scrolled.
+  const topbar = document.querySelector(".topbar");
+  const update = () => topbar.classList.toggle("scrolled", window.scrollY > 8);
+  update();
+  addEventListener("scroll", update, { passive: true });
+</script>
 
 </body>
 </html>

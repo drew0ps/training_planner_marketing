@@ -18,8 +18,6 @@
   --mark-charcoal: #2E3640;
   --glow: rgba(78, 142, 146, 0.28);
   --shadow: 0 18px 40px -22px rgba(46, 54, 64, 0.35);
-  --phone-bezel: #1A1E24;
-  --phone-edge: rgba(255, 255, 255, 0.14);
   --radius: 20px;
 }
 
@@ -41,8 +39,6 @@
     --mark-charcoal: #EEEEEE;
     --glow: rgba(118, 171, 174, 0.2);
     --shadow: 0 24px 50px -24px rgba(0, 0, 0, 0.7);
-    --phone-bezel: #0F1216;
-    --phone-edge: rgba(255, 255, 255, 0.18);
   }
 }
 
@@ -340,103 +336,23 @@ p + p {
   }
 }
 
-/* Phone frame around a raw capture (1320 x 2868) */
+/* A framed capture: the app on Apple's own iPhone chrome, from the simulator, as a
+   transparent PNG (948 x 1980, see scripts/update-screenshots.sh). The frame is in the
+   image, so the page only sizes it and adds depth. */
 
 .phone {
   --w: 18rem;
   position: relative;
   width: var(--w);
   max-width: 100%;
-  aspect-ratio: 1320 / 2868;
-  padding: calc(var(--w) * 0.028);
-  background: var(--phone-bezel);
-  border-radius: calc(var(--w) * 0.16);
-  box-shadow:
-    inset 0 0 0 1px var(--phone-edge),
-    0 40px 80px -30px rgba(0, 0, 0, 0.55),
-    var(--shadow);
+  aspect-ratio: 474 / 990;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
 }
 
 .phone img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: calc(var(--w) * 0.135);
-  background: #1A1E24;
-}
-
-.phone::after {
-  content: "";
-  position: absolute;
-  top: calc(var(--w) * 0.058);
-  left: 50%;
-  width: calc(var(--w) * 0.27);
-  height: calc(var(--w) * 0.058);
-  translate: -50% 0;
-  border-radius: 999px;
-  background: #000;
-}
-
-/* Hero */
-
-.hero {
-  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 5rem);
-}
-
-.hero .wrap {
-  display: grid;
-  gap: 3rem;
-  align-items: center;
-}
-
-.hero h1 {
-  font-size: clamp(2.5rem, 7vw, 4.25rem);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-}
-
-.hero h1 .progress {
-  color: var(--progress);
-}
-
-.lede {
-  max-width: 32rem;
-  margin-top: 1.4rem;
-  font-size: clamp(1.15rem, 2.2vw, 1.3rem);
-  color: var(--muted);
-}
-
-.cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-  margin-top: 2rem;
-}
-
-.trust {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.4rem;
-  margin: 1.75rem 0 0;
-  padding: 0;
-  list-style: none;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--muted);
-}
-
-.trust li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.trust svg {
-  width: 1rem;
-  height: 1rem;
-  color: var(--progress);
+  height: auto;
 }
 
 .hero-visual {

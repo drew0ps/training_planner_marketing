@@ -232,7 +232,7 @@
     font-size: 1rem;
   }
   .screenshots {
-    max-width: 90rem;
+    max-width: 64rem;
     margin: 0 auto 6rem;
     padding: 0 1.25rem;
   }
@@ -241,36 +241,36 @@
     font-size: clamp(1.7rem, 5vw, 2.1rem);
     letter-spacing: -0.01em;
   }
-  .shots-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 0 0 1.4rem;
-  }
   .screenshots-intro {
-    margin: 0;
+    margin: 0 0 2.25rem;
     font-size: 1.1rem;
   }
-  .shots-hint {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--accent);
-    white-space: nowrap;
+  .walkthrough {
+    display: grid;
+    gap: 3.5rem;
   }
-  .shots {
+  .walk-row {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 1.25rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
   }
-  .shots img {
+  .walk-row img {
     flex: 0 0 auto;
-    width: min(78vw, 25rem);
+    width: min(78vw, 19rem);
     height: auto;
     border-radius: 16px;
-    scroll-snap-align: start;
   }
+  .walk-text {
+    align-self: stretch;
+  }
+  .walk-text h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .walk-text p { margin: 0; }
   .pro {
     width: min(50rem, calc(100% - 2.5rem));
     margin: 0 auto 7rem;
@@ -285,6 +285,61 @@
     letter-spacing: -0.01em;
   }
   .pro > p { margin: 0; }
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1.5rem;
+    margin: 1.75rem 0 0;
+  }
+  .plan {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem 1.4rem;
+  }
+  .plan-best {
+    background: var(--icon-bg);
+    border-color: var(--accent);
+  }
+  .plan h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .plan-price {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .plan-period {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .plan-deal {
+    margin: 0.7rem 0 0;
+    font-size: 0.95rem;
+  }
+  .badge {
+    display: inline-block;
+    padding: 0.15rem 0.7rem;
+    margin: 0 0.35rem 0.35rem 0;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--card-bg);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .pro .fineprint {
+    margin: 1.4rem 0 0;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+  .fineprint a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .ticks-lead {
     margin: 1.5rem 0 0 !important;
     font-weight: 600;
@@ -342,6 +397,10 @@
       column-gap: 2.75rem;
     }
     .ticks li { break-inside: avoid; }
+    .walk-row { flex-direction: row; align-items: center; gap: 2.75rem; }
+    .walk-row:nth-of-type(even) { flex-direction: row-reverse; }
+    .walk-row img { width: 20rem; }
+    .walk-text { flex: 1 1 0; align-self: center; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -378,21 +437,78 @@
 <main>
   <section class="screenshots" aria-labelledby="shots-title">
     <h2 id="shots-title">See it in action</h2>
-    <div class="shots-head">
-      <p class="screenshots-intro">Every screen, straight from the app — scroll through the tour.</p>
-      <span class="shots-hint" aria-hidden="true">Scroll &rarr;</span>
-    </div>
-    <div class="shots">
-      <img src="screenshots/01-today.png" width="760" height="1651" loading="lazy" alt="The Today tab: the session to do with its exercises and the start workout button">
-      <img src="screenshots/02-body.png" width="760" height="1651" loading="lazy" alt="The Body tab: body weight, body fat and tape measurements, each with its latest value, change and chart">
-      <img src="screenshots/03-workout.png" width="760" height="1651" loading="lazy" alt="A workout under way: the set logged in a pop-up over the exercise">
-      <img src="screenshots/04-evaluation.png" width="760" height="1651" loading="lazy" alt="The workout evaluation after finishing, showing what improved and what to aim for next time">
-      <img src="screenshots/05-next-cycle.png" width="760" height="1651" loading="lazy" alt="The next cycle review, each exercise's new weights prescribed from what was logged, with its ticks">
-      <img src="screenshots/06-change-day.png" width="760" height="1651" loading="lazy" alt="The Change day sheet: a session swapped with another day, with its what-changes preview">
-      <img src="screenshots/07-calendar.png" width="760" height="1651" loading="lazy" alt="The calendar with done, partly done, missed and planned sessions">
-      <img src="screenshots/08-programs.png" width="760" height="1651" loading="lazy" alt="The Programs tab listing the training programs">
-      <img src="screenshots/09-board.png" width="760" height="1651" loading="lazy" alt="The program board laying the training cycle out day by day">
-      <img src="screenshots/10-periodization.png" width="760" height="1651" loading="lazy" alt="The periodization model picker: linear, block, undulating and pendulum, each with its intensity curve">
+    <p class="screenshots-intro">Every screen, straight from the app — scroll through the tour.</p>
+    <div class="walkthrough">
+      <div class="walk-row">
+        <img src="screenshots/01-today.png" width="760" height="1651" loading="lazy" alt="The Today tab: the session to do with its exercises and the start workout button">
+        <div class="walk-text">
+          <h3>Today's session, ready to go</h3>
+          <p>Today shows the session to do and starts it with one tap; the workout is laid out set by set, and the rest timer runs itself.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/02-body.png" width="760" height="1651" loading="lazy" alt="The Body tab: body weight, body fat and tape measurements, each with its latest value, change and chart">
+        <div class="walk-text">
+          <h3>Track your body too</h3>
+          <p>Weight, body fat and measurements, each with its trend; entries can be saved to Apple Health.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/03-workout.png" width="760" height="1651" loading="lazy" alt="A workout under way: the set logged in a pop-up over the exercise">
+        <div class="walk-text">
+          <h3>Log every set in seconds</h3>
+          <p>One tap per set, starting from what you lifted last time; supersets, rep ranges, timed holds and cardio are built in.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/04-evaluation.png" width="760" height="1651" loading="lazy" alt="The workout evaluation after finishing, showing what improved and what to aim for next time">
+        <div class="walk-text">
+          <h3>See how it went</h3>
+          <p>After each workout you see what improved and what to aim for next time.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/05-next-cycle.png" width="760" height="1651" loading="lazy" alt="The next cycle review, each exercise's new weights prescribed from what was logged, with its ticks">
+        <div class="walk-text">
+          <h3>Progress every cycle</h3>
+          <p>The next cycle prescribes itself from what you logged: linear, double progression or RPE-based, with deloads when you need them.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/06-change-day.png" width="760" height="1651" loading="lazy" alt="The Change day sheet: a session swapped with another day, with its what-changes preview">
+        <div class="walk-text">
+          <h3>Too tired? Change day</h3>
+          <p>Swap, move, push or skip a session and the plan adapts; a cycle can be any length, not just a week.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/07-calendar.png" width="760" height="1651" loading="lazy" alt="The calendar with done, partly done, missed and planned sessions">
+        <div class="walk-text">
+          <h3>Never miss a session</h3>
+          <p>The calendar shows every session — done, partly done, missed or planned — with the whole history behind it.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/08-programs.png" width="760" height="1651" loading="lazy" alt="The Programs tab listing the training programs">
+        <div class="walk-text">
+          <h3>Programs that adapt to you</h3>
+          <p>Simple repeating programs or advanced blocks, with intermediate and advanced templates to start from and unlimited programs.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/09-board.png" width="760" height="1651" loading="lazy" alt="The program board laying the training cycle out day by day">
+        <div class="walk-text">
+          <h3>Your cycle, at a glance</h3>
+          <p>Every day's work laid out on one board: drag sessions to the days you train, add exercises from a library of hundreds, each with step-by-step instructions.</p>
+        </div>
+      </div>
+      <div class="walk-row">
+        <img src="screenshots/10-periodization.png" width="760" height="1651" loading="lazy" alt="The periodization model picker: linear, block, undulating and pendulum, each with its intensity curve">
+        <div class="walk-text">
+          <h3>Periodize like a coach</h3>
+          <p>Linear, block, undulating or pendulum, each with its intensity curve and loads from your 1RM.</p>
+        </div>
+      </div>
     </div>
   </section>
   <div class="features">
@@ -405,7 +521,7 @@
         </svg>
       </div>
       <h2>Plan on a board</h2>
-      <p>Lay out your training cycle day by day: drag sessions to the days you train, add exercises from a library of hundreds, each with step-by-step instructions, and set the sets, reps, rest and weight for each. A cycle can be any length, not just a week.</p>
+      <p>Lay out your training cycle day by day and set the sets, reps, rest and weight for each. A cycle can be any length, not just a week.</p>
     </section>
     <section class="card">
       <div class="card-icon" aria-hidden="true">
@@ -417,7 +533,7 @@
         </svg>
       </div>
       <h2>Train without thinking about it</h2>
-      <p>Today shows the session to do and starts it with one tap. Every set starts from what you lifted last time; log it in a pop-up, and the rest timer runs by itself. Too tired? Move the session to tomorrow, switch it with another day, or skip an exercise just this once. Supersets, rep ranges, timed holds and cardio are all built in.</p>
+      <p>Every set starts from what you lifted last time; log it in a pop-up, and the rest timer runs by itself. Too tired? Move the session to tomorrow, switch it with another day, or skip an exercise just this once.</p>
     </section>
     <section class="card">
       <div class="card-icon" aria-hidden="true">
@@ -428,7 +544,7 @@
         </svg>
       </div>
       <h2>See how it went</h2>
-      <p>After each workout you see what improved and what to aim for next time. The calendar shows every session: done, partly done, missed or planned. Finished workouts can be saved to Apple Health.</p>
+      <p>The calendar shows every session, with the whole history behind it. Finished workouts can be saved to Apple Health.</p>
     </section>
   </div>
   <div class="extras">
@@ -444,6 +560,23 @@
   <section class="pro" aria-labelledby="pro-title">
     <h2 id="pro-title">TrainingPlanner Pro</h2>
     <p>Pro is a monthly or yearly subscription. Gym members can redeem their gym's code for the member price.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Monthly</h3>
+        <p class="plan-price">CHF 5.00<span class="plan-period"> / month</span></p>
+      </div>
+      <div class="plan plan-best">
+        <h3>Yearly</h3>
+        <p class="plan-price">CHF 50.00<span class="plan-period"> / year</span></p>
+        <p class="plan-deal"><span class="badge">2 months free</span> &asymp; CHF 4.17 / month</p>
+      </div>
+      <div class="plan">
+        <h3>Gym members</h3>
+        <p class="plan-price">CHF 1.00<span class="plan-period"> / month</span></p>
+        <p class="plan-deal">With your gym's offer code, redeemed in the app or the App Store.</p>
+      </div>
+    </div>
+    <p class="fineprint">Subscriptions are charged to your Apple ID account and renew automatically unless cancelled at least 24 hours before the period ends; manage or cancel anytime in your App Store settings. <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a> &middot; <a href="https://drew0ps.github.io/Training_Planner_Privacy/">Privacy Policy</a></p>
     <p class="ticks-lead">Everything in the free app, plus:</p>
     <ul class="ticks">
       <li>Structured plans: phases, deloads and as many cycles as you like</li>

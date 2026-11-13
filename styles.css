@@ -336,6 +336,67 @@ p + p {
   }
 }
 
+/* Hero */
+
+.hero {
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 5rem);
+}
+
+.hero .wrap {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.hero h1 .progress {
+  color: var(--progress);
+}
+
+.lede {
+  max-width: 32rem;
+  margin-top: 1.4rem;
+  font-size: clamp(1.15rem, 2.2vw, 1.3rem);
+  color: var(--muted);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin: 1.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.trust svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--progress);
+}
+
 /* A framed capture: the app on Apple's own iPhone chrome, from the simulator, as a
    transparent PNG (948 x 1980, see scripts/update-screenshots.sh). The frame is in the
    image, so the page only sizes it and adds depth. */

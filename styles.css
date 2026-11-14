@@ -465,6 +465,72 @@ p + p {
   }
 }
 
+/* The devices: each capture on its own frame */
+
+.device-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem) 2.5rem;
+  grid-template-columns: 1fr;
+  align-items: end;
+}
+
+.device {
+  margin: 0;
+}
+
+.device img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.45));
+}
+
+.device-watch .watch-pair {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.device-watch .watch-pair img {
+  width: min(14rem, 42%);
+}
+
+.device-duo img {
+  width: min(22rem, 80%);
+  margin: 0 auto;
+}
+
+.device figcaption {
+  margin-top: 1.25rem;
+}
+
+.device figcaption strong {
+  display: block;
+  font-size: 1.125rem;
+  margin-bottom: 0.2rem;
+}
+
+.device figcaption span {
+  color: var(--muted);
+}
+
+@media (min-width: 52rem) {
+  .device-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .device-ipad,
+  .device-mac {
+    grid-column: span 2;
+  }
+
+  .device-ipad img,
+  .device-mac img {
+    width: min(100%, 60rem);
+    margin: 0 auto;
+  }
+}
+
 /* Logos strip of plain facts */
 
 .facts {

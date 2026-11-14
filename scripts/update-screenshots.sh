@@ -29,6 +29,17 @@ for source in "$framed"/*.png; do
     "$source" --out "$site/screenshots/$name.png" > /dev/null
 done
 
+# The other devices, from swift Branding/make-device-shots.swift
+devices="$app/Branding/Screenshots/Framed"
+mkdir -p "$site/screenshots/devices"
+sips --resampleWidth 1200 -s format png "$devices/iPad-13-inch/01-today.png" \
+  --out "$site/screenshots/devices/ipad-today.png" > /dev/null
+sips --resampleWidth 1200 -s format png "$devices/Mac/01-today.png" \
+  --out "$site/screenshots/devices/mac-today.png" > /dev/null
+cp "$devices/Apple-Watch/01-today.png" "$site/screenshots/devices/watch-today.png"
+cp "$devices/Apple-Watch/03-log-set.png" "$site/screenshots/devices/watch-log.png"
+cp "$devices/iPhone-Duo/01-today.png" "$site/screenshots/devices/duo-today.png"
+
 sips --resampleWidth 1200 -s format png \
   "$app/Branding/CreativeAssets/SearchResults-3x2-3840x2560.png" \
   --out "$site/og-image.png" > /dev/null

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TrainingPlanner: Progressive Overload Planner for iPhone, iPad, Mac and Apple Watch</title>
 <meta name="description" content="Plan your training in cycles, log every set in seconds, and let your
-  weights go up the right way. Free to start, no account, nothing tracked. Pro adds structured plans and
+  weights go up the right way. Free to start, no account, no server, no analytics. Pro adds structured plans and
   automatic progression.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F5F6">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222831">
@@ -105,7 +105,7 @@
             </svg>No account</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
-            </svg>No ads, no tracking</li>
+            </svg>No server, no ads, no analytics</li>
         </ul>
       </div>
       <div class="hero-visual">
@@ -141,6 +141,11 @@
         <p>One app and one plan, kept in sync through your private iCloud. Plan on the big screen, train
           from the phone in your pocket, log sets from the wrist.</p>
       </div>
+      <figure class="device-lineup">
+        <img src="screenshots/devices/lineup.png" width="2000" height="975" loading="lazy"
+          alt="TrainingPlanner on a MacBook, an iPad, an iPhone and an Apple Watch side by side: today's
+            program on each screen and a set being logged on the wrist">
+      </figure>
       <div class="device-grid">
         <figure class="device device-ipad">
           <img src="screenshots/devices/ipad-today.png" width="1200" height="915" loading="lazy"
@@ -162,9 +167,13 @@
               alt="TrainingPlanner on Apple Watch: today's Push session with its exercises and sets done">
             <img src="screenshots/devices/watch-log.png" width="502" height="582" loading="lazy"
               alt="Logging a set on Apple Watch: the weight and reps with plus and minus buttons">
+            <img src="screenshots/devices/watch-workout.png" width="502" height="582" loading="lazy"
+              alt="A workout recorded on Apple Watch: the time, heart rate and calories above today's exercises">
           </div>
           <figcaption><strong>Apple Watch</strong><span>Today's workout on the wrist: log every set, turn
-            the crown for the weight, and the rest timer taps you when it's time.</span></figcaption>
+            the crown for the weight, and the rest timer taps you when it's time. Start the workout on the
+            watch and it records your heart rate and calories, saved to Health and counted toward your
+            rings.</span></figcaption>
         </figure>
         <figure class="device device-duo">
           <img src="screenshots/devices/duo-today.png" width="1028" height="1412" loading="lazy"
@@ -276,6 +285,32 @@
           <h3>Too tired? Change day</h3>
           <p>Train another session today, swap with another day, move only this one, push everything
             later or skip it. You see what moves before it does.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15a8 8 0 0116 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.5"/>
+              <path d="M3 19h18"/>
+            </svg>
+          </span>
+          <h3>Readiness, from your sleep and heart</h3>
+          <p>Last night's heart rate variability, resting heart rate and sleep from Apple Health, against
+            your own last four weeks, as one score with its reasons. Your training load, with other apps'
+            runs and rides counted in, says whether fatigue is building.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7h10M18 7h2M4 12h4M12 12h8M4 17h12M20 17h0"/>
+              <circle cx="16" cy="7" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="17" r="2"/>
+            </svg>
+          </span>
+          <h3>Today's plan, adjusted to today</h3>
+          <p>A low night holds the squats and deadlifts at last time's weights and leaves the curls alone; a
+            muscle still recovering loses a set; a set that felt far too hard eases the next one. One tap
+            trains as planned.</p>
         </article>
         <article class="card reveal">
           <span class="card-icon" aria-hidden="true">
@@ -450,6 +485,32 @@
       </li>
       <li>
         <div class="phone">
+          <img src="screenshots/13-readiness.png" width="640" height="1336" loading="lazy"
+            alt="Readiness 90, high: heart rate variability, sleep and resting heart rate each against your
+              normal, and the training load below">
+        </div>
+        <h3>Know when to push</h3>
+        <p>Readiness from your sleep and heart data, and your training load.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/14-adjustment.png" width="640" height="1336" loading="lazy"
+            alt="A workout opening with Holding the weights today: readiness low, with a Train as planned
+              button">
+        </div>
+        <h3>Adjusted to today</h3>
+        <p>A low day holds the big lifts; one tap trains as planned.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/15-equipment.png" width="640" height="1336" loading="lazy"
+            alt="Settings › Equipment: a home gym with the equipment ticked, the bar and the plates owned">
+        </div>
+        <h3>Your gym, your plates</h3>
+        <p>Say what you have and every suggestion fits it.</p>
+      </li>
+      <li>
+        <div class="phone">
           <img src="screenshots/06-calendar.png" width="640" height="1336" loading="lazy"
             alt="The training calendar: this week's workouts and streak, hard sets per muscle and the
               month with planned and done days">
@@ -501,8 +562,10 @@
         <div>
           <p class="eyebrow">Privacy</p>
           <h2>Your data stays yours.</h2>
-          <p class="muted" style="margin-top: 1rem; font-size: 1.1rem;">No accounts, no ads, no analytics
-            and no tracking. The App Store privacy label reads "Data Not Collected", and it means it.</p>
+          <p class="muted" style="margin-top: 1rem; font-size: 1.1rem;">There is no server behind this app:
+            no accounts, no ads, no analytics, no third-party code. It tracks your training, for you, and
+            nobody else gets to see it. The App Store privacy label reads "Data Not Collected", and it means
+            it.</p>
         </div>
         <ul>
           <li>
@@ -527,14 +590,27 @@
               <path d="M12 21s-7-4.6-7-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 017 3.5C19 16.4 12 21 12 21z"/>
             </svg>
             <div><strong>Apple Health, if you want it</strong><span>Finished workouts, body weight, body fat
-              and waist can be saved to Health. You choose what.</span></div>
+              and waist can be saved to Health. Only if you turn on readiness does the app read anything:
+              your heart rate variability, resting heart rate, sleep and other apps' workouts, worked out
+              on the device and kept there, never synced or sent. The watch records the workouts you start
+              on it.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4M4 17l8 4 8-4"/>
+            </svg>
+            <div><strong>Private iCloud, or none</strong><span>Sync runs through your own iCloud account,
+              which only you can read. Turn it off and the app lives on one device.</span></div>
           </li>
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/>
             </svg>
-            <div><strong>Yours to take along</strong><span>Export your whole log as CSV at any time.</span>
+            <div><strong>Yours to take along</strong><span>Back up everything to one file you keep: programs,
+              every workout, body entries and photos, settings. Restore it on any device, or move to another
+              account with it. CSV export and import too.</span>
             </div>
           </li>
         </ul>
@@ -563,6 +639,9 @@
             <li>Exercise library with guides, beginner templates</li>
             <li>Change day, freestyle workouts, train any workout again</li>
             <li>Import from Hevy or Strong, Siri and Shortcuts</li>
+            <li>Your equipment and plates, training load from your logs, and today's adjustment for muscles
+              still recovering</li>
+            <li>Apple Watch app: log sets from the wrist and record the workout with heart rate</li>
             <li>Send your trainer a report and take the plans they send back</li>
           </ul>
         </div>
@@ -573,7 +652,10 @@
             <li>Structured plans: phases, deloads and as many cycles as you like</li>
             <li>Automatic progression: linear, double progression and RPE-based, with the next cycle
               suggested from what you logged</li>
-            <li>Periodization: linear, undulating, block and more, with loads from your 1RM</li>
+            <li>Periodization: linear, undulating, block and more, with loads from your 1RM, or automatic
+              from your goal, experience and length</li>
+            <li>Readiness from your sleep and heart data in Apple Health, other apps' workouts in your
+              training load, today's adjustment from it, and the Readiness widget</li>
             <li>Pyramids, drop sets, rest-pause and myo-reps</li>
             <li>Intermediate and advanced templates, and unlimited programs and cycles</li>
             <li>Workout insights: each exercise and each muscle against the last cycle, full strength
@@ -581,7 +663,7 @@
             <li>Body tracking with progress photos and a before and after for each program</li>
             <li>The on-device coach and program designer with Apple Intelligence</li>
             <li>Trainer mode: keep your clients' reports and send them programs and adjustments</li>
-            <li>Plate calculator, Home Screen widget, rest timer Live Activity and every theme</li>
+            <li>Plate calculator, Home Screen widgets, rest timer Live Activity and every theme</li>
           </ul>
         </div>
       </div>

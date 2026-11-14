@@ -38,7 +38,12 @@ sips --resampleWidth 1200 -s format png "$devices/Mac/01-today.png" \
   --out "$site/screenshots/devices/mac-today.png" > /dev/null
 cp "$devices/Apple-Watch/01-today.png" "$site/screenshots/devices/watch-today.png"
 cp "$devices/Apple-Watch/03-log-set.png" "$site/screenshots/devices/watch-log.png"
+cp "$devices/Apple-Watch/05-workout.png" "$site/screenshots/devices/watch-workout.png"
 cp "$devices/iPhone-Duo/01-today.png" "$site/screenshots/devices/duo-today.png"
+
+# All the devices in one picture, from swift Branding/make-device-lineup.swift
+sips --resampleWidth 2000 -s format png "$app/Branding/CreativeAssets/DeviceLineup.png" \
+  --out "$site/screenshots/devices/lineup.png" > /dev/null
 
 sips --resampleWidth 1200 -s format png \
   "$app/Branding/CreativeAssets/SearchResults-3x2-3840x2560.png" \

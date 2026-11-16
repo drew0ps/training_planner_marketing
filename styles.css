@@ -213,6 +213,24 @@ p + p {
   flex: none;
 }
 
+/* A line above the top bar while a new version waits in App Review: scripts/set-notice.sh
+   puts it there and takes it off again */
+
+.notice {
+  margin: 0;
+  padding: 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--accent-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.notice strong {
+  color: var(--accent);
+}
+
 /* Top bar */
 
 .topbar {

@@ -17,6 +17,7 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
 | `robots.txt`, `sitemap.xml` | For search engines. |
 | `scripts/update-press-kit.sh` | Rebuilds `press/` and its zip from the app repository. |
 | `scripts/set-campaign.sh` | Puts an App Store Connect campaign on the App Store links. |
+| `scripts/set-notice.sh` | Puts the "in review" notice on top of both pages, and takes it off on release day. |
 | `scripts/update-screenshots.sh` | Regenerates every image above from the app repository. |
 | `scripts/update-clips.sh` | Copies the clips from the app repository and makes their stills. |
 
@@ -35,6 +36,12 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
   screenshots and the App Store's app preview video into `press/` and zips them with the fact sheet.
   Facts change in three places together: `press.html`, `press/fact-sheet.txt` and the App Store
   listing. The download button in `press.html` says the zip's size.
+- **A version in review:** the pages describe the version that is coming, so while it waits in App
+  Review a line on top of both says so:
+  `scripts/set-notice.sh 2.4 2.3 "the Apple Watch, iPad and Mac apps, readiness and medals"` (the
+  version in review, the one on the App Store, and what arrives with it). **On release day:**
+  `scripts/set-notice.sh --clear`, then commit and push. It only rewrites what stands between the two
+  `notice` comments under `<body>`.
 - **Campaigns:** `scripts/set-campaign.sh <provider token> [campaign]` adds the campaign to the
   download links and the Smart App Banner of both pages, so App Analytics counts the installs that
   start here; `--clear` takes it off. The token comes from Generate Campaign Link in App Analytics.

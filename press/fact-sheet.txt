@@ -1,0 +1,42 @@
+TrainingPlanner: fact sheet
+
+Name             TrainingPlanner (listed on the App Store as "TrainingPlanner Pro")
+Tagline          Train in phases. Progress every cycle.
+What it is       A strength training planner and log that turns a plan into a workout you
+                 follow set by set, and writes the next cycle from what you logged.
+Developer        Adam Marton, independent developer
+First released   5 November 2026
+Platforms        iPhone and iPad (iOS and iPadOS 18.2 or later), Mac (macOS 26, Apple
+                 silicon), Apple Watch (watchOS 11 or later)
+Price            Free. TrainingPlanner Pro is CHF 5.00 a month or CHF 50.00 a year; the
+                 App Store shows each country's own price.
+Category         Health & Fitness
+Language         English
+Privacy          No account, no server, no ads, no analytics. App Store privacy label:
+                 Data Not Collected.
+Website          https://trainingplanner.pro/
+App Store        https://apps.apple.com/app/id6824840650
+Contact          drewops@proton.me
+
+In one sentence
+TrainingPlanner is a strength training planner for iPhone, iPad, Mac and Apple Watch that
+turns a plan into a workout you can follow, set by set, and helps your weights and reps go
+up over time.
+
+In one paragraph
+TrainingPlanner plans strength training in cycles of any length, not just weeks. You lay a
+cycle out on a board, train it with every set starting from what you lifted last time, and
+when the cycle ends the next one is prescribed from what you logged: up where every rep
+was done, repeated where reps were missed. It runs on iPhone, iPad, Mac and Apple Watch,
+kept in sync through the user's private iCloud. There is no account and no server behind
+it: the App Store privacy label reads "Data Not Collected". The free app is a complete
+training log for one repeating plan; TrainingPlanner Pro adds structured plans with phases
+and deloads, automatic progression, periodization, readiness from Apple Health and an
+on-device coach.
+
+Writing about it
+- The name is one word with two capitals: TrainingPlanner. "TrainingPlanner Pro" is the
+  App Store listing's name and the name of the subscription.
+- The pictures in this kit may be used in articles, reviews and videos about the app.
+  Please don't alter the app icon or the mark.
+- The exercise drawings in the app are Everkinetic's (CC BY-SA 4.0).

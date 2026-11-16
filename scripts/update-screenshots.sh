@@ -36,10 +36,15 @@ sips --resampleWidth 1200 -s format png "$devices/iPad-13-inch/01-today.png" \
   --out "$site/screenshots/devices/ipad-today.png" > /dev/null
 sips --resampleWidth 1200 -s format png "$devices/Mac/01-today.png" \
   --out "$site/screenshots/devices/mac-today.png" > /dev/null
+sips --resampleWidth 1200 -s format png "$devices/Mac/05-board.png" \
+  --out "$site/screenshots/devices/mac-board.png" > /dev/null
+cp "$devices/Apple-Watch/04-rest.png" "$site/screenshots/devices/watch-rest.png"
 cp "$devices/Apple-Watch/01-today.png" "$site/screenshots/devices/watch-today.png"
 cp "$devices/Apple-Watch/03-log-set.png" "$site/screenshots/devices/watch-log.png"
 cp "$devices/Apple-Watch/05-workout.png" "$site/screenshots/devices/watch-workout.png"
-cp "$devices/iPhone-Duo/01-today.png" "$site/screenshots/devices/duo-today.png"
+# The Duo is shown at 22rem at most: 1028 px is more than twice that
+sips --resampleWidth 1028 -s format png "$devices/iPhone-Duo/01-today.png" \
+  --out "$site/screenshots/devices/duo-today.png" > /dev/null
 
 # All the devices in one picture, from swift Branding/make-device-lineup.swift
 sips --resampleWidth 2000 -s format png "$app/Branding/CreativeAssets/DeviceLineup.png" \

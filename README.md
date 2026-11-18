@@ -39,9 +39,10 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
   listing. The download button in `press.html` says the zip's size.
 - **Privacy policy:** the words of `privacy.html` are also in the app, at
   `Training Planner/Resources/PrivacyPolicy.md` in the app repository. Change both together, with a
-  new "Effective" date when the meaning changes. The `Training_Planner_Privacy` repository has the
-  pages App Store Connect and the app link to (`drew0ps.github.io/Training_Planner_Privacy/`): until
-  those forward here, the policy changes there too.
+  new "Effective" date when the meaning changes. The pages in the `Training_Planner_Privacy`
+  repository (`drew0ps.github.io/Training_Planner_Privacy/`), where the policy and the support page
+  were until November 18, 2026, only forward here. They have to stay: an older Mac build's Help menu
+  and older App Store descriptions link to them.
 - **A version in review:** the home and press pages describe the version that is coming, so while it
   waits in App Review a line on top of both says so:
   `scripts/set-notice.sh 2.4 2.3 "the Apple Watch, iPad and Mac apps, readiness and medals"` (the

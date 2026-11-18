@@ -14,10 +14,11 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
 | `og-image.png` | The link preview image, from the App Store search-results artwork. |
 | `favicon.svg`, `apple-touch-icon.png` | The mark and the app icon. |
 | `press.html`, `press/` | The press kit: a fact sheet, texts to quote, pictures and a video, and the same as one zip. `press/fact-sheet.txt` is written by hand. |
+| `privacy.html`, `support.html` | The privacy policy and the support page: prose, styled by `.doc` in `styles.css`. |
 | `robots.txt`, `sitemap.xml` | For search engines. |
 | `scripts/update-press-kit.sh` | Rebuilds `press/` and its zip from the app repository. |
 | `scripts/set-campaign.sh` | Puts an App Store Connect campaign on the App Store links. |
-| `scripts/set-notice.sh` | Puts the "in review" notice on top of both pages, and takes it off on release day. |
+| `scripts/set-notice.sh` | Puts the "in review" notice on top of the home and press pages, and takes it off on release day. |
 | `scripts/update-screenshots.sh` | Regenerates every image above from the app repository. |
 | `scripts/update-clips.sh` | Copies the clips from the app repository and makes their stills. |
 
@@ -36,21 +37,26 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
   screenshots and the App Store's app preview video into `press/` and zips them with the fact sheet.
   Facts change in three places together: `press.html`, `press/fact-sheet.txt` and the App Store
   listing. The download button in `press.html` says the zip's size.
-- **A version in review:** the pages describe the version that is coming, so while it waits in App
-  Review a line on top of both says so:
+- **Privacy policy:** the words of `privacy.html` are also in the app, at
+  `Training Planner/Resources/PrivacyPolicy.md` in the app repository. Change both together, with a
+  new "Effective" date when the meaning changes. The `Training_Planner_Privacy` repository has the
+  pages App Store Connect and the app link to (`drew0ps.github.io/Training_Planner_Privacy/`): until
+  those forward here, the policy changes there too.
+- **A version in review:** the home and press pages describe the version that is coming, so while it
+  waits in App Review a line on top of both says so:
   `scripts/set-notice.sh 2.4 2.3 "the Apple Watch, iPad and Mac apps, readiness and medals"` (the
   version in review, the one on the App Store, and what arrives with it). **On release day:**
   `scripts/set-notice.sh --clear`, then commit and push. It only rewrites what stands between the two
   `notice` comments under `<body>`.
 - **Campaigns:** `scripts/set-campaign.sh <provider token> [campaign]` adds the campaign to the
-  download links and the Smart App Banner of both pages, so App Analytics counts the installs that
-  start here; `--clear` takes it off. The token comes from Generate Campaign Link in App Analytics.
+  download links of every page and the Smart App Banner of the home page, so App Analytics counts
+  the installs that start here; `--clear` takes it off. The token comes from Generate Campaign Link in App Analytics.
 - **App Store link:** the download buttons and the JSON-LD block point at
   <https://apps.apple.com/us/app/trainingplanner-pro/id6824840650>.
 - **Link preview:** `og:image`, `og:url` and the canonical link are absolute URLs on
   `https://trainingplanner.pro/`; change them together if the domain ever changes.
 - **Search engines:** `robots.txt` allows everything and points at `sitemap.xml`, which lists the
-  one page. Update its `lastmod` when the copy changes.
+  four pages. Update a page's `lastmod` when its copy changes.
 - **Smart App Banner:** the `apple-itunes-app` meta tag makes Safari on iPhone and iPad offer the
   app at the top of the page.
 - **Prices:** shown in CHF, as set in App Store Connect; the App Store shows each storefront's own.

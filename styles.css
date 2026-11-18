@@ -1284,6 +1284,40 @@ p + p {
   justify-content: center;
 }
 
+/* Text pages: the privacy policy and the support page, one column of prose */
+
+.doc {
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(4rem, 9vw, 6rem);
+}
+
+.doc .wrap > * {
+  max-width: 44rem;
+}
+
+.doc h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+}
+
+.doc .date {
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+.doc h2 {
+  margin: 2.75rem 0 0.75rem;
+  font-size: clamp(1.3rem, 2.6vw, 1.5rem);
+}
+
+.doc ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.doc li + li {
+  margin-top: 0.6rem;
+}
+
 /* Footer */
 
 footer {

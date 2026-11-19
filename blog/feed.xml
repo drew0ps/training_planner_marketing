@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>TrainingPlanner blog</title>
+  <subtitle>Training methods and programs, and how to set them up in TrainingPlanner.</subtitle>
+  <link href="https://trainingplanner.pro/blog/"/>
+  <link rel="self" href="https://trainingplanner.pro/blog/feed.xml"/>
+  <id>https://trainingplanner.pro/blog/</id>
+  <updated>2026-11-19T08:00:00Z</updated>
+  <author><name>Adam Marton</name></author>
+</feed>

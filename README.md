@@ -1,7 +1,8 @@
 # TrainingPlanner marketing site
 
-A single static page for TrainingPlanner, the progressive overload
-planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies: `index.html`, `styles.css` and the images.
+A static site for TrainingPlanner, the progressive overload planner for iPhone, iPad, Mac and Apple Watch:
+the home page, the press kit, the privacy and support pages, and a blog. No build step and no dependencies:
+HTML, `styles.css` and the images, with a few scripts that rewrite them.
 
 ## Files
 
@@ -16,6 +17,12 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
 | `press.html`, `press/` | The press kit: a fact sheet, texts to quote, pictures and a video, and the same as one zip. `press/fact-sheet.txt` is written by hand. |
 | `privacy.html`, `support.html` | The privacy policy and the support page: prose, styled by `.doc` in `styles.css`. |
 | `robots.txt`, `sitemap.xml` | For search engines. |
+| `blog/` | The blog: `index.html` lists the published posts, `feed.xml` is their Atom feed, each post is `<slug>.html`, and `media/` has every post's pictures, clips and covers. |
+| `_drafts/` | Posts waiting to be published, in the order of `_drafts/queue.txt`. Not on the site (see Blog below). `_drafts/media` is a link to `blog/media`. |
+| `scripts/publish-post.py` | Publishes the next post in the queue and brings the blog's list, feed, sitemap and links up to date. |
+| `scripts/update-blog-media.py` | Makes the pictures and clips the posts use from the app repository's captures. |
+| `scripts/update-program-posts.py` | Writes the program posts' tables from the programs the app exports. |
+| `scripts/make-covers.swift` | Draws each post's cover, the picture its link shows. |
 | `scripts/update-press-kit.sh` | Rebuilds `press/` and its zip from the app repository. |
 | `scripts/set-campaign.sh` | Puts an App Store Connect campaign on the App Store links. |
 | `scripts/set-notice.sh` | Puts the "in review" notice on top of the home and press pages, and takes it off on release day. |
@@ -57,10 +64,53 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
 - **Link preview:** `og:image`, `og:url` and the canonical link are absolute URLs on
   `https://trainingplanner.pro/`; change them together if the domain ever changes.
 - **Search engines:** `robots.txt` allows everything and points at `sitemap.xml`, which lists the
-  four pages. Update a page's `lastmod` when its copy changes.
+  four pages and, between its `blog` comments, the blog and its published posts (`scripts/publish-post.py`
+  writes those). Update a page's `lastmod` when its copy changes.
 - **Smart App Banner:** the `apple-itunes-app` meta tag makes Safari on iPhone and iPad offer the
   app at the top of the page.
 - **Prices:** shown in CHF, as set in App Store Connect; the App Store shows each storefront's own.
+
+## Blog
+
+The blog explains the training methods TrainingPlanner supports (progression, periodization, effort, volume,
+deloads, readiness and the set types) with how to set each one up on iPhone, iPad and Mac, and has a post for
+every built-in program. Guides (a quick start with a simple Push · Legs · Pull, coaching between a trainer and a
+client) are listed first, under Using TrainingPlanner. A post's section is its `article:section`: `Guides`,
+`Training` or `Programs`. The posts are published one at a time, from a queue.
+
+- **Drafts:** every post waits in `_drafts/<slug>.html`, a complete page. GitHub Pages builds this site with
+  Jekyll, which leaves out every folder whose name starts with `_`, so drafts are not on the site; they stay out
+  only as long as there is no `.nojekyll` file. Their pictures and clips are in `blog/media/` already, on the
+  site but linked from nowhere: `_drafts/media` links to it, so a post's paths are the same before and after it
+  is published. Look at a draft with the local preview below, at `/_drafts/<slug>.html`.
+- **Publishing:** `scripts/publish-post.py` publishes the first post of `_drafts/queue.txt` that's still a
+  draft (or `scripts/publish-post.py <slug>`): it moves it to `blog/`, dates it today (`--date 2026-12-01` for
+  another day), and rewrites the list on `blog/index.html` (between its `posts` comments), `blog/feed.xml`, the
+  blog's part of `sitemap.xml`, and the Blog link in the top bar and footer of the home, press, privacy and
+  support pages (between their `blog-link` comments, empty until the first post is out). Then commit and push.
+  `--list` shows the queue, `--refresh` rewrites the lists and links without publishing, and `--check` lists any
+  picture, clip or link a post names that isn't there. The dates in `queue.txt` are the plan (Mondays and
+  Thursdays); nothing is published by itself.
+- **Links between posts** are written `<a href="<slug>.html" data-post="<slug>">`. While the post they lead to
+  isn't out, the publishing script turns them into plain words (`<span class="pending">`) and hides the "Read
+  next" lines for it (`data-needs`); publishing that post turns them back into links everywhere.
+- **Pictures and clips:** the app is filmed and photographed for the blog in the app repository:
+  `Branding/capture-blog.sh` (iPhone, iPad, every program, the Mac) writes `Branding/Blog`. A post names each
+  picture by where it goes under `blog/media` (`media/iphone/periodization-chosen.jpg`,
+  `media/clips/ipad/pyramid.mp4`, `media/programs/fiveByFive/mac-board.jpg`), and
+  `scripts/update-blog-media.py` makes exactly those from the captures, sized for the page, with a still for
+  each clip, and removes what no post uses any more. Look at frames of the clips before pushing, as for the
+  home page's.
+- **Program tables:** each program post names its program (`<meta name="tp:program" content="fiveByFive">`) and
+  marks where its tables go (`<!-- program-sessions -->` and the like). `scripts/update-program-posts.py` writes
+  them from `Branding/Blog/programs.json`, which the app exports (`Branding/capture-blog.sh data`), so the sets,
+  phases and weeks shown are the app's own. Run it again when the programs change. The quick start's plan is in
+  the same file as `simplePushLegsPull`, though it isn't one of the app's templates.
+- **Covers:** `swift scripts/make-covers.swift` draws `blog/media/covers/<slug>.jpg` for every post, with its
+  title and the first phone screen it shows, or the one its `<meta name="tp:cover-screen">` names; run it after
+  `update-blog-media.py` and after changing a title.
+- **A new post:** copy a draft, change its slug, words and pictures, add it to `queue.txt`, then run the media
+  script and the covers.
 
 ## Preview locally
 
@@ -68,4 +118,4 @@ planner for iPhone, iPad, Mac and Apple Watch. No build step and no dependencies
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000>.
+Then open <http://localhost:8000>, and <http://localhost:8000/_drafts/progressive-overload.html> for a draft.

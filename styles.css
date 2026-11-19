@@ -1399,3 +1399,539 @@ footer .legal {
     transition: none;
   }
 }
+
+/* The blog: the list of posts (blog/index.html) and each post, one column of prose with the
+   app's screens beside it. Posts are written in _drafts/ and moved to blog/ by
+   scripts/publish-post.py. */
+
+.blog-head {
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.blog-head h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-weight: 800;
+}
+
+.blog-head p:not(.eyebrow) {
+  max-width: 40rem;
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+
+.blog-list {
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.blog-list h2 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+.blog-list section + section {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.post-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-card a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.post-card a:hover,
+.post-card a:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.post-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  object-fit: cover;
+  background: var(--bg-deep);
+}
+
+.post-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.post-card h3 {
+  font-size: 1.15rem;
+}
+
+.post-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.post-card .meta {
+  margin-top: auto;
+  padding-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* A post */
+
+.post {
+  padding-block: clamp(2.5rem, 6vw, 4rem) clamp(4rem, 9vw, 6rem);
+}
+
+.post .wrap > * {
+  max-width: 44rem;
+}
+
+.post .wrap > .wide {
+  max-width: 64rem;
+}
+
+.crumbs {
+  margin-bottom: 1.5rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.crumbs a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.crumbs a:hover,
+.crumbs a:focus-visible {
+  color: var(--accent);
+}
+
+.post h1 {
+  font-size: clamp(2.1rem, 5.2vw, 3.2rem);
+  font-weight: 800;
+}
+
+.post .lede {
+  max-width: 44rem;
+}
+
+.byline {
+  margin-top: 1.1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.post h2 {
+  margin: 3rem 0 0.9rem;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+}
+
+.post h3 {
+  margin: 2rem 0 0.6rem;
+  font-size: 1.2rem;
+}
+
+.post p,
+.post li {
+  font-size: 1.075rem;
+}
+
+.post p + p,
+.post p + ul,
+.post p + ol,
+.post ul + p,
+.post ol + p {
+  margin-top: 1em;
+}
+
+.post ul,
+.post ol {
+  margin: 1em 0 0;
+  padding-left: 1.3rem;
+}
+
+.post li + li {
+  margin-top: 0.45rem;
+}
+
+.post .pending {
+  font-weight: 600;
+}
+
+/* Steps in the app, numbered in the accent */
+
+.post ol.steps {
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.post ol.steps > li {
+  position: relative;
+  padding-left: 2.6rem;
+  counter-increment: step;
+}
+
+.post ol.steps > li + li {
+  margin-top: 0.8rem;
+}
+
+.post ol.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.path {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Notes set apart from the prose */
+
+.callout {
+  margin: 1.75rem 0;
+  padding: 1.1rem 1.3rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.callout p + p {
+  margin-top: 0.6em;
+}
+
+.callout strong:first-child {
+  color: var(--accent);
+}
+
+.callout.safety {
+  border-left-color: #D08770;
+}
+
+/* The app's screens: phones in a row, wider screens on their own */
+
+/* Three phones to a row in the column, one on a phone; a row of two keeps their width */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 1.5rem 1.25rem;
+  margin: 2rem 0;
+}
+
+.shot {
+  margin: 0;
+}
+
+.shot img,
+.shot video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  background: #1A1E24;
+  box-shadow: var(--shadow);
+}
+
+.shot.phone-screen img,
+.shot.phone-screen video {
+  border-radius: 11% / 5.2%;
+}
+
+.shot.tablet-screen img,
+.shot.tablet-screen video {
+  border-radius: 1.8% / 2.4%;
+}
+
+.shot.mac-window img {
+  border: 0;
+  border-radius: 12px;
+  background: none;
+}
+
+.shot figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.shot figcaption strong {
+  display: block;
+  color: var(--text);
+}
+
+.wide-shot {
+  margin: 2rem 0;
+}
+
+.wide-shot .shot {
+  max-width: 64rem;
+}
+
+/* A clip beside its steps, on wider screens */
+
+.clip-steps {
+  display: grid;
+  gap: 1.5rem;
+  margin: 2rem 0;
+  align-items: start;
+}
+
+.clip-steps .shot {
+  width: min(17rem, 80vw);
+}
+
+@media (min-width: 52rem) {
+  .post .wrap > .clip-steps {
+    max-width: 52rem;
+  }
+
+  .clip-steps {
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+  }
+
+  .clip-steps ol.steps {
+    margin-top: 0;
+  }
+}
+
+.device-label {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Tables of sets, phases and weeks, scrolled sideways on a phone */
+
+.table-wrap {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.post table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.post caption {
+  padding: 0.85rem 1rem 0.35rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.post th,
+.post td {
+  padding: 0.6rem 1rem;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.post thead th {
+  border-top: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.post td.num,
+.post th.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.post td small {
+  display: block;
+  color: var(--muted);
+}
+
+.post .group {
+  display: inline-block;
+  min-width: 1.9rem;
+  margin-right: 0.35rem;
+  padding: 0 0.35rem;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Facts about a program, at the top of its post */
+
+.post .facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts-grid li {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.post .facts-grid li + li {
+  margin-top: 0;
+}
+
+.facts-grid span {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.facts-grid strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.05rem;
+}
+
+/* The end of a post: get the app, then what to read next */
+
+.post-cta {
+  margin: 3.5rem 0 0;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 4px);
+  background:
+    radial-gradient(30rem 14rem at 50% 130%, var(--glow), transparent 70%),
+    var(--surface);
+}
+
+.post-cta h2 {
+  margin: 0;
+}
+
+.post-cta p {
+  margin-top: 0.75rem;
+  color: var(--muted);
+}
+
+.post-cta .cta-row {
+  margin-top: 1.25rem;
+}
+
+.read-next {
+  margin-top: 3rem;
+}
+
+.read-next h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.read-next ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.read-next li {
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.post .read-next li + li {
+  margin-top: 0;
+}
+
+.read-next a {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.read-next span {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* A program's cycle, day by day */
+
+.post .cycle-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(6.75rem, 1fr));
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cycle-strip li {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.post .cycle-strip li + li {
+  margin-top: 0;
+}
+
+.cycle-strip li span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.cycle-strip li.rest {
+  border: 1px dashed var(--line);
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+}

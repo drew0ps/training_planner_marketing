@@ -4,9 +4,9 @@
 # anything. The provider token comes from Generate Campaign Link in App Analytics; the
 # campaign name is yours (40 characters at most, letters, digits, - and _).
 #
-# It rewrites the download links of every page and the Smart App Banner of index.html.
-# The JSON-LD keeps the plain link. Run it again to change the campaign, or with --clear
-# to take it off.
+# It rewrites the download links of every page, the blog's posts and drafts included, and
+# their Smart App Banners. The JSON-LD keeps the plain link. Run it again to change the
+# campaign, or with --clear to take it off.
 #
 # Usage: scripts/set-campaign.sh <provider token> [campaign, default "site"]
 #        scripts/set-campaign.sh --clear
@@ -33,7 +33,8 @@ if [ "$1" != "--clear" ]; then
   banner=", affiliate-data=pt=$token&amp;ct=$campaign"
 fi
 
-for page in index.html press.html privacy.html support.html; do
+cd "$site"
+for page in index.html press.html privacy.html support.html blog/*.html _drafts/*.html; do
   file="$site/$page"
   [ -f "$file" ] || continue
   QUERY="$query" BANNER="$banner" APP_ID="$app_id" perl -0pi -e '

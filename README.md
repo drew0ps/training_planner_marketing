@@ -134,8 +134,12 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   here, which needs `ffmpeg` for the stills: the five clips the App Store's two app previews are cut
   from, each with its first frame, in `dietapp/clips/`. The "See it move" section plays them in the order
   of its `data-clip` lines, with the main page's script.
-- The privacy policy and support page stay on `drew0ps.github.io/ios_diet_app_hosted`, where App Store
-  Connect points.
+- **Privacy policy and support:** `dietapp/privacy.html` and `dietapp/support.html`, since November 20,
+  2026; App Store Connect has them without `.html` (Pages serves both forms): Marketing URL
+  `https://trainingplanner.pro/dietapp/`, Privacy Policy URL `https://trainingplanner.pro/dietapp/privacy`,
+  Support URL `https://trainingplanner.pro/dietapp/support`, which are also their canonical addresses and
+  the sitemap's. They were on `drew0ps.github.io/ios_diet_app_hosted`, whose pages now forward here. The
+  policy's words are the app's `DietApp/Resources/PrivacyPolicy.md`: change both together.
 
 ## Preview locally
 

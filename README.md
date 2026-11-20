@@ -128,7 +128,12 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   in the app since 2.0.8, so the page doesn't offer it; scanning a nutrition label is still there.
 - **Pictures:** `make -C Branding all` in the app repository photographs the app and runs
   `dietapp/scripts/update-screenshots.sh` here (`make -C Branding site` only copies): the framed captures
-  at 640 px, the link preview from the search-results artwork and the touch icon.
+  at 640 px, three of the Apple Watch's as they are (`screenshots/devices/watch-*.png`), the link preview
+  from the search-results artwork and the touch icon.
+- **Clips:** `make -C Branding clips` there films the app and runs `dietapp/scripts/update-clips.sh`
+  here, which needs `ffmpeg` for the stills: the five clips the App Store's two app previews are cut
+  from, each with its first frame, in `dietapp/clips/`. The "See it move" section plays them in the order
+  of its `data-clip` lines, with the main page's script.
 - The privacy policy and support page stay on `drew0ps.github.io/ios_diet_app_hosted`, where App Store
   Connect points.
 

@@ -20,6 +20,7 @@ HTML, `styles.css` and the images, with a few scripts that rewrite them.
 | `blog/` | The blog: `index.html` lists the published posts, `feed.xml` is their Atom feed, each post is `<slug>.html`, and `media/` has every post's pictures, clips and covers. |
 | `_drafts/` | Posts waiting to be published, in the order of `_drafts/queue.txt`. Not on the site (see Blog below). `_drafts/media` is a link to `blog/media`. |
 | `scripts/publish-post.py` | Publishes the next post in the queue and brings the blog's list, feed, sitemap and links up to date. |
+| `dietapp/` | DietApp Pro's page, trainingplanner.pro/dietapp/: the developer's other app, on this site's stylesheet with `dietapp.css` for its own mark. See DietApp Pro below. |
 | `scripts/update-blog-media.py` | Makes the pictures and clips the posts use from the app repository's captures. |
 | `scripts/update-program-posts.py` | Writes the program posts' tables from the programs the app exports. |
 | `scripts/make-covers.swift` | Draws each post's cover, the picture its link shows. |
@@ -111,6 +112,25 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   `update-blog-media.py` and after changing a title.
 - **A new post:** copy a draft, change its slug, words and pictures, add it to `queue.txt`, then run the media
   script and the covers.
+
+## DietApp Pro
+
+`dietapp/` is DietApp Pro's page (the app repository is `../ios_diet_app`). It was the
+`ios_diet_app_marketing` site, which had no remote, and moved here on November 20, 2026.
+
+- **Not on the App Store yet:** the buttons say "Coming soon" (`<span class="btn btn-ghost soon">`) and
+  lead nowhere. Once the listing is live, make each one a link to its App Store URL
+  (`<a class="btn btn-primary" href="…">Download on the App Store</a>`, "Get the app" in the top bar),
+  add `installUrl` to the JSON-LD, and change "Coming soon to the App Store, free to start" in the closing
+  section.
+- **Copy** follows the App Store listing in `../ios_diet_app/docs/app-store-listing.md`: the feature
+  lists, the free allowances (3 AI logs a week, 3 saved meals) and the Pro list. Meal photo logging is off
+  in the app since 2.0.8, so the page doesn't offer it; scanning a nutrition label is still there.
+- **Pictures:** `make -C Branding all` in the app repository photographs the app and runs
+  `dietapp/scripts/update-screenshots.sh` here (`make -C Branding site` only copies): the framed captures
+  at 640 px, the link preview from the search-results artwork and the touch icon.
+- The privacy policy and support page stay on `drew0ps.github.io/ios_diet_app_hosted`, where App Store
+  Connect points.
 
 ## Preview locally
 

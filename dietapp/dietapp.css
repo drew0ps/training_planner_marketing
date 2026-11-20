@@ -1,0 +1,40 @@
+/* DietApp Pro's page: the site's stylesheet (../styles.css), and what differs from TrainingPlanner's
+   pages below. */
+
+/* DietApp Pro's mark: a fork, a knife and a spoon. The pieces stand still (the bars' rise is
+   TrainingPlanner's), and the hero shows them at the size of a line of text. */
+
+.mark-hero {
+  width: 5.5rem;
+  height: 6rem;
+}
+
+.mark-hero rect,
+.mark-hero path,
+.mark-hero ellipse,
+.mark-hero polygon {
+  animation: none;
+  transform: none;
+}
+
+/* The watch pictures of the diet app stand larger than TrainingPlanner's. */
+
+.device-watch .watch-pair img {
+  width: min(14rem, 42%);
+}
+
+/* Until the App Store listing is live, the download buttons say so and lead nowhere: a ghost
+   button's outline that doesn't light up or press. */
+
+.btn.soon {
+  cursor: default;
+}
+
+.btn.soon:active {
+  transform: none;
+}
+
+.btn-ghost.soon:hover {
+  border-color: var(--line);
+  color: var(--text);
+}

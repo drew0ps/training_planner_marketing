@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="150 170 630 690">
+  <style>
+    .g { fill: #8C9799; }
+    .t { fill: #4E8E92; }
+    .c { fill: #2E3640; }
+    @media (prefers-color-scheme: dark) {
+      .g { fill: #909D9E; }
+      .t { fill: #76ABAE; }
+      .c { fill: #EEEEEE; }
+    }
+  </style>
+  <!-- Fork: four tines, a tapering neck, a handle -->
+  <rect class="g" x="187" y="200" width="30" height="200" rx="15"/>
+  <rect class="g" x="227" y="200" width="30" height="200" rx="15"/>
+  <rect class="g" x="267" y="200" width="30" height="200" rx="15"/>
+  <rect class="g" x="307" y="200" width="30" height="200" rx="15"/>
+  <polygon class="g" points="185,395 339,395 297,500 227,500"/>
+  <rect class="g" x="227" y="495" width="70" height="335" rx="35"/>
+  <!-- Knife: a blade and a handle -->
+  <path class="t" d="M455 200 L573 248 L573 580 L455 580 Q450 380 455 200 Z"/>
+  <rect class="t" x="479" y="575" width="66" height="255" rx="33"/>
+  <!-- Spoon: a bowl and a handle -->
+  <ellipse class="c" cx="762" cy="300" rx="58" ry="100"/>
+  <rect class="c" x="731" y="390" width="62" height="440" rx="31"/>
+</svg>

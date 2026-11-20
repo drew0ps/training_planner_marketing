@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DietApp Pro: Calories, Macros and Meal Plans for iPhone and Apple Watch</title>
+<meta name="description" content="Log meals in seconds by typing or speaking, follow your
+  macros and see your progress take shape. No account, nothing tracked, your data in your own iCloud.
+  Free to start; Pro adds private AI logging, meal plans and the weekly coach.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F5F6">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#222831">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DietApp Pro">
+<meta property="og:title" content="DietApp Pro: Every meal, right on track.">
+<meta property="og:description" content="Calories, macros and meal plans, logged in seconds. Type it or say
+  it; understood on your iPhone. Free to start, no account, nothing tracked.">
+<meta property="og:url" content="https://trainingplanner.pro/dietapp/">
+<meta property="og:image" content="https://trainingplanner.pro/dietapp/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://trainingplanner.pro/dietapp/">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="dietapp.css">
+<!-- COMING SOON: the app isn't on the App Store yet. Once its listing is live, the three "soon"
+     buttons become links to it and the JSON-LD gets its "installUrl" (README.md, DietApp Pro). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "DietApp Pro",
+  "alternateName": "DietApp Pro: Calories, macros & meal plans",
+  "operatingSystem": "iOS 18.2 or later",
+  "applicationCategory": "HealthApplication",
+  "url": "https://trainingplanner.pro/dietapp/",
+  "description": "Log meals in seconds, follow your macros and see your progress take shape.",
+  "author": { "@type": "Person", "name": "Adam Marton" },
+  "offers": [
+    { "@type": "Offer", "price": "0", "priceCurrency": "CHF", "name": "Free" },
+    { "@type": "Offer", "price": "5.00", "priceCurrency": "CHF", "name": "DietApp Pro, monthly" },
+    { "@type": "Offer", "price": "50.00", "priceCurrency": "CHF", "name": "DietApp Pro, yearly" }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="DietApp Pro, back to top">
+      <svg class="mark" viewBox="150 170 630 690" aria-hidden="true" focusable="false">
+        <rect x="187" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+        <rect x="227" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+        <rect x="267" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+        <rect x="307" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+        <polygon points="185,395 339,395 297,500 227,500" style="fill: var(--mark-grey);"/>
+        <rect x="227" y="495" width="70" height="335" rx="35" style="fill: var(--mark-grey);"/>
+        <path d="M455 200 L573 248 L573 580 L455 580 Q450 380 455 200 Z" style="fill: var(--mark-teal);"/>
+        <rect x="479" y="575" width="66" height="255" rx="33" style="fill: var(--mark-teal);"/>
+        <ellipse cx="762" cy="300" rx="58" ry="100" style="fill: var(--mark-charcoal);"/>
+        <rect x="731" y="390" width="62" height="440" rx="31" style="fill: var(--mark-charcoal);"/>
+      </svg>
+      DietApp Pro
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#screens">Screens</a>
+      <a href="#pro">Pro</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <span class="btn btn-ghost soon">Coming soon</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <svg class="mark mark-hero" viewBox="150 170 630 690" aria-hidden="true" focusable="false">
+          <rect x="187" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="227" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="267" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="307" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <polygon points="185,395 339,395 297,500 227,500" style="fill: var(--mark-grey);"/>
+          <rect x="227" y="495" width="70" height="335" rx="35" style="fill: var(--mark-grey);"/>
+          <path d="M455 200 L573 248 L573 580 L455 580 Q450 380 455 200 Z" style="fill: var(--mark-teal);"/>
+          <rect x="479" y="575" width="66" height="255" rx="33" style="fill: var(--mark-teal);"/>
+          <ellipse cx="762" cy="300" rx="58" ry="100" style="fill: var(--mark-charcoal);"/>
+          <rect x="731" y="390" width="62" height="440" rx="31" style="fill: var(--mark-charcoal);"/>
+        </svg>
+        <p class="eyebrow">Calories, macros and meal plans for iPhone and Apple Watch</p>
+        <h1>Every meal, <span class="progress">right on track.</span></h1>
+        <p class="lede">DietApp Pro logs what you eat in seconds, keeps your calories and macros in view,
+          and shows your progress taking shape. Your data stays on your iPhone and in your own iCloud.</p>
+        <div class="cta-row">
+          <span class="btn btn-ghost soon">Coming soon to the App Store</span>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <ul class="trust" aria-label="Good to know">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>Free to start</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>No account</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/>
+            </svg>No ads, no tracking</li>
+        </ul>
+      </div>
+      <div class="hero-visual">
+        <div class="phone phone-main">
+          <img src="screenshots/01-today.png" width="640" height="1336" fetchpriority="high"
+            alt="The Today tab: calories left for the day, protein, carbs and fat against their targets,
+              water, and the meals logged so far">
+        </div>
+        <div class="phone phone-back" aria-hidden="true">
+          <img src="screenshots/05-log-hub.png" width="640" height="1336" loading="lazy" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="facts" aria-label="At a glance">
+    <div class="wrap">
+      <ul>
+        <li><strong>Seconds</strong><span>Type what you ate or say it out loud; it's understood on your
+          iPhone</span></li>
+        <li><strong>Hundreds</strong><span>of built-in foods, plus Open Food Facts and USDA FoodData
+          Central</span></li>
+        <li><strong>On device</strong><span>Text and voice logging with Apple Intelligence; no meal goes
+          to a cloud AI</span></li>
+        <li><strong>Macros first</strong><span>Protein, carbs and fat with their own targets, not just
+          calories</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2>Say what you ate. Check the numbers. Watch the trend.</h2>
+      </div>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3>Log it your way</h3>
+          <p>Type "2 eggs, toast and a coffee" or say it out loud. The meal is understood on your
+            iPhone and every food comes back with its calories and macros.</p>
+          <ul>
+            <li>Barcodes and nutrition labels are read on the device too.</li>
+            <li>Each proposed food says where its numbers come from: the built-in library, Open Food Facts,
+              USDA, or an estimate.</li>
+            <li>Nothing is saved until you've checked it. Swap a food, change an amount, then confirm.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/05-log-hub.png" width="640" height="1336" loading="lazy"
+              alt="The Log Food screen: type or say what you ate, scan a barcode or a label, or pick a
+                favorite">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/03-add-food.png" width="640" height="1336" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3>Keep your day in view</h3>
+          <p>Today shows what's left of your calories, protein, carbs and fat, your water, and each meal
+            with what you planned beside what you ate. Set your own targets, or let the app suggest them
+            from your goal.</p>
+          <ul>
+            <li>Fiber, sodium, caffeine and twenty vitamins and minerals, if you want to see them.</li>
+            <li>A fasting timer, favorites and recent foods for one-tap logging.</li>
+            <li>A Home Screen widget with today's calories, macros and water.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/02-meals.png" width="640" height="1336" loading="lazy"
+              alt="The meals of the day: breakfast with its planned foods beside what was logged, and the
+                day's totals pinned above">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/04-favorites.png" width="640" height="1336" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step-copy">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3>See your progress take shape</h3>
+          <p>Weight, body fat and lean mass over time, with body-composition estimates that are labeled
+            as estimates. Every week, Insights sums up your averages, your adherence and the trend, and
+            the weekly coach leaves you a personal note.</p>
+          <ul>
+            <li>Weight and body fat import from Apple Health, if you opt in.</li>
+            <li>Reports you can read in a minute, not a dashboard to study.</li>
+            <li>Smart suggestions: foods that fit what's left of your calories and protein today.</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <div class="phone">
+            <img src="screenshots/06-progress.png" width="640" height="1336" loading="lazy"
+              alt="The Progress tab: weight, body fat and lean mass charts over the last weeks">
+          </div>
+          <div class="phone" aria-hidden="true">
+            <img src="screenshots/07-insights.png" width="640" height="1336" loading="lazy" alt="">
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Features</p>
+        <h2>A food tracker that respects your time, and your data.</h2>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0012 0M12 17v4M9 21h6"/>
+            </svg>
+          </span>
+          <h3>Type it or say it</h3>
+          <p>A sentence is enough. Foods and quantities are parsed on your iPhone, and speech is
+            transcribed on the device.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 8V6a2 2 0 012-2h2M16 4h2a2 2 0 012 2v2M20 16v2a2 2 0 01-2 2h-2M8 20H6a2 2 0 01-2-2v-2"/>
+              <circle cx="12" cy="12" r="3.5"/>
+            </svg>
+          </span>
+          <h3>Scan a label</h3>
+          <p>Photograph a nutrition label and its calories and macros are read on the device: any
+            product, added in seconds.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 7V4h3M17 4h3v3M20 17v3h-3M7 20H4v-3M8 8v8M12 8v8M16 8v8"/>
+            </svg>
+          </span>
+          <h3>Barcodes and real sources</h3>
+          <p>Scan a barcode and the product comes from Open Food Facts or USDA FoodData Central. Every
+            number says where it came from.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>
+              <path d="M9 16l2 2 4-4"/>
+            </svg>
+          </span>
+          <h3>Follow a meal plan</h3>
+          <p>Plans with several days that repeat, alternatives for each food, and a plan that can log
+            itself every day. Import the one your coach sends you.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 20v-6M12 20V9M19 20V4"/>
+            </svg>
+          </span>
+          <h3>Weekly coach and insights</h3>
+          <p>Averages, adherence and trends in one place, and a personal note every week about what
+            went well and what to change.</p>
+          <span class="tag">Pro</span>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="5" r="2.5"/><path d="M8 10h8l-1 5h-6zM10 15v6M14 15v6"/>
+            </svg>
+          </span>
+          <h3>Body composition</h3>
+          <p>Weight, body fat and lean mass over time, with estimates you can see and correct, and Apple
+            Health import if you want it.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3C8 8 6 11 6 14.5a6 6 0 0012 0C18 11 16 8 12 3z"/>
+            </svg>
+          </span>
+          <h3>Water and fasting</h3>
+          <p>Quick-add buttons for water and a fasting timer, both free, both on the widget and in
+            Siri.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>
+              <path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>
+            </svg>
+          </span>
+          <h3>Siri and Shortcuts</h3>
+          <p>"How many calories do I have left?" "Log water." "Start a fast." Hands-free, and on the
+            Action button if you like.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="5" width="10" height="14" rx="3"/><path d="M9 5V2h6v3M9 19v3h6v-3M17 10h1.5"/>
+            </svg>
+          </span>
+          <h3>On your wrist</h3>
+          <p>The Apple Watch app keeps your favorites one tap from logged, adds a glass of water, and
+            shows what's left of the day. It works with the iPhone in another room.</p>
+        </article>
+        <article class="card reveal">
+          <span class="card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19h16M6 16l4-5 3 3 5-7"/>
+            </svg>
+          </span>
+          <h3>Saved meals, recipes and repeats</h3>
+          <p>Your usual breakfast as one entry, recipes with per-serving nutrition, and the daily coffee
+            or vitamins logged automatically.</p>
+          <span class="tag">Pro</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="screens" class="section gallery" aria-labelledby="screens-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Screens</p>
+        <h2 id="screens-title">Straight from the app</h2>
+        <p>Scroll sideways. Dark here; the app follows your iPhone's look, with light and dark themes.</p>
+      </div>
+    </div>
+    <ul class="strip">
+      <li>
+        <div class="phone">
+          <img src="screenshots/01-today.png" width="640" height="1336" loading="lazy"
+            alt="The Today tab with calories left, macros against their targets, water and the day's meals">
+        </div>
+        <h3>Your day, at a glance</h3>
+        <p>Calories, protein, carbs and fat, always in view.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/02-meals.png" width="640" height="1336" loading="lazy"
+            alt="Meals of the day with planned foods beside what was eaten">
+        </div>
+        <h3>Stick to the plan, meal by meal</h3>
+        <p>Planned foods right beside what you ate.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/05-log-hub.png" width="640" height="1336" loading="lazy"
+            alt="The Log Food hub: type, speak, scan, or pick a favorite">
+        </div>
+        <h3>Log it your way</h3>
+        <p>Type it, say it out loud, logged in seconds.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/03-add-food.png" width="640" height="1336" loading="lazy"
+            alt="Searching for greek yogurt: results from the built-in library, Open Food Facts and USDA">
+        </div>
+        <h3>Find any food in seconds</h3>
+        <p>A built-in library plus Open Food Facts and USDA.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/06-progress.png" width="640" height="1336" loading="lazy"
+            alt="Weight, body fat and lean mass charts">
+        </div>
+        <h3>See your progress take shape</h3>
+        <p>Weight, body fat and lean mass over time.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/07-insights.png" width="640" height="1336" loading="lazy"
+            alt="Weekly insights: averages, adherence and the trend">
+        </div>
+        <h3>Know how your week really went</h3>
+        <p>Averages, adherence and trends in one place.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/08-meal-plan.png" width="640" height="1336" loading="lazy"
+            alt="A meal plan with its days, each meal's foods and their alternatives">
+        </div>
+        <h3>Plans built around your goals</h3>
+        <p>Create multi-day plans or import one from your coach.</p>
+      </li>
+      <li>
+        <div class="phone">
+          <img src="screenshots/04-favorites.png" width="640" height="1336" loading="lazy"
+            alt="Favorites and recent foods, each logged with one tap">
+        </div>
+        <h3>One tap for the usual</h3>
+        <p>Favorites, recent foods and saved meals.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="privacy" class="section privacy">
+    <div class="wrap">
+      <div class="panel reveal">
+        <div>
+          <p class="eyebrow">Privacy</p>
+          <h2>Your meals are nobody's business.</h2>
+          <p class="muted" style="margin-top: 1rem; font-size: 1.1rem;">No accounts, no ads, no analytics
+            and no tracking. The only network requests are the food and barcode lookups you trigger.</p>
+        </div>
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M11 17h2"/>
+            </svg>
+            <div><strong>Kept on your iPhone</strong><span>and in your private iCloud, which only you can
+              read. Nothing goes to a server of ours, because there isn't one.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>
+            </svg>
+            <div><strong>AI on the device</strong><span>Voice and sentences are understood by Apple's
+              on-device models. Only individual food names and barcodes are looked up
+              online.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 21s-7-4.6-7-10.5A4.5 4.5 0 0112 7a4.5 4.5 0 017 3.5C19 16.4 12 21 12 21z"/>
+            </svg>
+            <div><strong>Apple Health, if you want it</strong><span>Energy, macros and micronutrients go
+              to Health; weight and body fat come in. Every part is optional, and nothing read from Health
+              is synced or sent anywhere.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>
+            </svg>
+            <div><strong>Yours to delete</strong><span>Settings › Data › Delete All Data leaves nothing
+              behind: no entries, no widget numbers, no reminders.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="pro" class="section pro">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Free and Pro</p>
+        <h2>Start free. Go Pro when you want the app to do the typing.</h2>
+        <p>The free app is a complete food diary. Pro is for AI logging, meal plans and the weekly
+          coach.</p>
+      </div>
+      <div class="compare">
+        <div class="tier reveal">
+          <header><h3>Free</h3><span>Forever</span></header>
+          <p>Everything you need to track a day, with no time limit.</p>
+          <ul class="ticks">
+            <li>Calories, protein, carbs and fat with your own daily targets</li>
+            <li>Manual logging from the built-in library, Open Food Facts and USDA, with barcode scanning</li>
+            <li>3 AI logs a week to try typing or speaking your meals</li>
+            <li>Water with quick-add buttons and a fasting timer</li>
+            <li>Fiber, sodium, caffeine and twenty vitamins and minerals</li>
+            <li>Favorites, recent foods and 3 saved meals</li>
+            <li>Weight, body fat and lean mass over time</li>
+            <li>Home Screen widget, Siri actions, Apple Health and iCloud sync</li>
+          </ul>
+        </div>
+        <div class="tier tier-pro reveal">
+          <header><h3>DietApp Pro</h3><span>Everything in Free, plus</span></header>
+          <p>For logging in seconds and following a plan.</p>
+          <ul class="ticks">
+            <li>Private AI logging without limits: type or say what you ate</li>
+            <li>Nutrition label scan: photograph a label to add any product</li>
+            <li>Smart suggestions: foods that fit what's left of your calories and protein</li>
+            <li>Weekly coach and insights: a personal note every week, with trends and reports</li>
+            <li>Siri and Shortcuts for your meals: "Log my usual breakfast"</li>
+            <li>Unlimited saved meals and recipes with per-serving nutrition</li>
+            <li>Meal plans to follow and share, with what's left of each day</li>
+            <li>Repeating foods: your daily coffee or vitamins, logged automatically</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="plans">
+        <div class="plan">
+          <h3>Monthly</h3>
+          <p class="plan-price">CHF 5.00 <small>/ month</small></p>
+          <p class="plan-note">Cancel any time.</p>
+        </div>
+        <div class="plan plan-best">
+          <span class="badge">1 week free</span>
+          <h3>Yearly</h3>
+          <p class="plan-price">CHF 50.00 <small>/ year</small></p>
+          <p class="plan-note">About CHF 4.17 a month, after a free week.</p>
+        </div>
+      </div>
+      <p class="fineprint">Prices in Swiss francs; the App Store shows your country's. Subscriptions are
+        charged to your Apple Account and renew automatically unless cancelled at least 24 hours before
+        the period ends; manage or cancel any time in your App Store settings.
+        <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+        &middot; <a href="https://drew0ps.github.io/ios_diet_app_hosted/privacy.html">Privacy Policy</a></p>
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <div class="wrap">
+      <div class="section-head center">
+        <p class="eyebrow">Questions</p>
+        <h2>Before you download</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Is DietApp Pro free?</summary>
+          <p>Yes. The free app tracks calories, macros, water and fasting with the built-in library,
+            Open Food Facts and USDA, with 3 AI logs a week and 3 saved meals to try, and no time limit.
+            Pro removes the limits and adds label scanning, meal plans, the weekly coach and the rest
+            of the Pro list above.</p>
+        </details>
+        <details>
+          <summary>Which iPhones does it run on?</summary>
+          <p>Any iPhone on iOS 18.2 or later. The on-device understanding of what you type or say uses
+            Apple Intelligence, so it needs an iPhone that supports it; without it you
+            can still log everything by typing, searching or scanning.</p>
+        </details>
+        <details>
+          <summary>Do I need an account or an internet connection?</summary>
+          <p>No account, ever. Your food log and measurements are kept on your iPhone and, if you're
+            signed in to iCloud, in your private iCloud database. The built-in library works offline;
+            Open Food Facts and USDA lookups need a connection, and fail gracefully without one.</p>
+        </details>
+        <details>
+          <summary>How accurate are the numbers?</summary>
+          <p>Library, Open Food Facts and USDA foods carry their source's figures. When the on-device
+            model has to estimate a food, it says so, and you can correct it before saving. Calorie,
+            macro and body-composition figures are estimates, as they are in every tracker.</p>
+        </details>
+        <details>
+          <summary>I follow a plan from a coach or dietitian. Does that work?</summary>
+          <p>Yes. Build the plan once, or open the one your coach shares as a file. Each day's planned
+            foods appear beside what you actually ate, so you log the plan with one tap or see where you
+            went off it. Plans can have alternatives for each food and can log themselves daily.</p>
+        </details>
+        <details>
+          <summary>How do I cancel Pro?</summary>
+          <p>In your App Store subscription settings, at any time. Pro stays on until the end of the
+            period you paid for, and your log is always kept.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section closing">
+    <div class="wrap">
+      <div class="panel reveal">
+        <svg class="mark" viewBox="150 170 630 690" aria-hidden="true" focusable="false">
+          <rect x="187" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="227" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="267" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <rect x="307" y="200" width="30" height="200" rx="15" style="fill: var(--mark-grey);"/>
+          <polygon points="185,395 339,395 297,500 227,500" style="fill: var(--mark-grey);"/>
+          <rect x="227" y="495" width="70" height="335" rx="35" style="fill: var(--mark-grey);"/>
+          <path d="M455 200 L573 248 L573 580 L455 580 Q450 380 455 200 Z" style="fill: var(--mark-teal);"/>
+          <rect x="479" y="575" width="66" height="255" rx="33" style="fill: var(--mark-teal);"/>
+          <ellipse cx="762" cy="300" rx="58" ry="100" style="fill: var(--mark-charcoal);"/>
+          <rect x="731" y="390" width="62" height="440" rx="31" style="fill: var(--mark-charcoal);"/>
+        </svg>
+        <h2>Log your next meal in seconds.</h2>
+        <p>Coming soon to the App Store, free to start. No account, nothing to set up, and your first meal
+          is a sentence away.</p>
+        <div class="cta-row">
+          <span class="btn btn-ghost soon">Coming soon to the App Store</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav aria-label="Privacy and support">
+      <a href="https://drew0ps.github.io/ios_diet_app_hosted/privacy.html">Privacy Policy</a>
+      <a href="https://drew0ps.github.io/ios_diet_app_hosted/support.html">Support</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+    </nav>
+    <p>&copy; 2026 Adam Marton</p>
+    <p class="legal">DietApp Pro helps you track food and body measurements; it isn't medical advice.
+      Calorie, macro and body composition figures are estimates. If you're pregnant, have a health
+      condition or a history of disordered eating, talk to a doctor or dietitian before changing your
+      diet. Apple, iPhone, App Store, Apple Health, Apple Intelligence and Siri are trademarks of Apple
+      Inc. Open Food Facts and USDA FoodData Central are the property of their owners.</p>
+  </div>
+</footer>
+
+<script>
+  // Shows a hairline under the top bar once the page has scrolled.
+  const topbar = document.querySelector(".topbar");
+  const update = () => topbar.classList.toggle("scrolled", window.scrollY > 8);
+  update();
+  addEventListener("scroll", update, { passive: true });
+</script>
+
+</body>
+</html>

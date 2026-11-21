@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Brings the blog's pictures and clips in from the app repository: the ones the posts use.
+"""Brings the blog's pictures and clips in from the app repository: the ones the posts use, and
+the home page (its AI coach section shows the coach tour's pictures).
 
 The app is filmed and photographed for the blog in the app repository: Branding/capture-blog.sh
 writes Branding/Blog. A post names each picture and clip by where it goes under blog/media,
@@ -14,8 +15,8 @@ and this makes it from its capture, sized for the page:
 
 The number in a capture's name (its place in the tour) is left out of the post's, so a tour
 that takes one more picture doesn't move the others. The covers (media/covers) are
-scripts/make-covers.swift's. A file no post uses any more is removed; a capture that's
-missing is reported. Needs ffmpeg for the stills (brew install ffmpeg).
+scripts/make-covers.swift's. A file no post or the home page uses any more is removed; a
+capture that's missing is reported. Needs ffmpeg for the stills (brew install ffmpeg).
 
 Usage: scripts/update-blog-media.py [path to the app repository, default ../Training Planner] [--force]
 """
@@ -37,11 +38,14 @@ WIDTHS = {"iphone": 720, "ipad": 1600, "mac": 1600}
 
 
 def references():
+    """What the posts use, and the home page (index.html), which shows some of the same pictures."""
     found = set()
+    pages = [os.path.join(ROOT, "index.html")]
     for folder in ("_drafts", "blog"):
-        for path in glob.glob(os.path.join(ROOT, folder, "*.html")):
-            text = open(path, encoding="utf-8").read()
-            found.update(re.findall(r"media/([A-Za-z0-9_./-]+\.(?:jpg|png|mp4))", text))
+        pages += glob.glob(os.path.join(ROOT, folder, "*.html"))
+    for path in pages:
+        text = open(path, encoding="utf-8").read()
+        found.update(re.findall(r"media/([A-Za-z0-9_./-]+\.(?:jpg|png|mp4))", text))
     return found
 
 
@@ -111,7 +115,7 @@ def main():
         elif kind == "still":
             subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", origin, "-frames:v", "1", "-q:v", "3", target], check=True)
         made += 1
-    # What no post uses any more
+    # What no post or the home page uses any more
     removed = 0
     for path in glob.glob(os.path.join(MEDIA, "**", "*.*"), recursive=True):
         relative = os.path.relpath(path, MEDIA)

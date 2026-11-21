@@ -274,7 +274,7 @@ p + p {
 
 .topnav {
   display: none;
-  gap: 1.75rem;
+  gap: 1.25rem;
 }
 
 .topnav a {
@@ -304,14 +304,18 @@ p + p {
   }
 }
 
-/* A home page's extra links (Watch, Screens) join the bar once every link fits on one line; until then
-   it has the five the other pages have. Seven links don't fit at 52rem: "How it works" broke over three
-   lines, on an 11-inch iPad Pro upright among others. */
+/* A home page's extra links (Watch, Screens) join the bar once every link fits on one line, with the
+   links spaced wider; until then the links sit closer. Seven or eight links don't fit at 52rem: "How
+   it works" broke over three lines, on an 11-inch iPad Pro upright among others. */
 .topnav .secondary {
   display: none;
 }
 
-@media (min-width: 64rem) {
+@media (min-width: 68rem) {
+  .topnav {
+    gap: 1.75rem;
+  }
+
   .topnav .secondary {
     display: block;
   }
@@ -504,9 +508,11 @@ p + p {
 /* The clips: one phone that plays them, and a line per moment beside it. A clip is the bare
    screen (720 x 1564, see scripts/update-clips.sh), laid over the display of a framed
    capture, which keeps the frame around it: the display sits 34 px inside the 948 x 1980
-   frame, and its corners are rounded like the panel's. */
+   frame, and its corners are rounded like the panel's. A bare picture of the screen (.screen,
+   one of the blog's captures) is laid over the same way. */
 
-.phone video {
+.phone video,
+.phone .screen {
   position: absolute;
   left: 3.586%;
   top: 1.717%;
@@ -759,6 +765,16 @@ p + p {
 
 .together .step {
   padding-block: 0;
+}
+
+/* The AI coach: its tip in a workout, and the lighter set the app started */
+
+.coach .step {
+  padding-block: 0;
+}
+
+.step-copy .coach-note {
+  font-size: 0.95rem;
 }
 
 .duet {

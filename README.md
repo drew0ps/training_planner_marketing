@@ -100,8 +100,8 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   picture by where it goes under `blog/media` (`media/iphone/periodization-chosen.jpg`,
   `media/clips/ipad/pyramid.mp4`, `media/programs/fiveByFive/mac-board.jpg`), and
   `scripts/update-blog-media.py` makes exactly those from the captures, sized for the page, with a still for
-  each clip, and removes what no post uses any more. Look at frames of the clips before pushing, as for the
-  home page's.
+  each clip, and removes what no post uses any more. The home page counts as a post there: what it shows from
+  `blog/media` is made and kept too. Look at frames of the clips before pushing, as for the home page's.
 - **Program tables:** each program post names its program (`<meta name="tp:program" content="fiveByFive">`) and
   marks where its tables go (`<!-- program-sessions -->` and the like). `scripts/update-program-posts.py` writes
   them from `Branding/Blog/programs.json`, which the app exports (`Branding/capture-blog.sh data`), so the sets,
@@ -116,6 +116,13 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   blog's cards, chosen by hand and written there, not by the publishing script: the quick start, progressive
   overload and double progression since November 21, 2026. Change a card when its post's title or cover
   changes, and link only posts that are out. "How it works" links the last two in its third step.
+- **The AI coach on the home page** (`#coach` in `index.html`, since November 21, 2026) shows the coach tour's
+  pictures, `media/iphone/coach-tip.jpg` and `coach-eased.jpg`, each laid over a framed phone (`.phone
+  .screen`): bench press at 100 kg for 9 with nothing left in reserve, the next set started 5 % lighter, and the
+  coach's tip for it. The tip is Apple Intelligence's own answer, so the tour (`BlogTours.testCoachInWorkout`)
+  needs a simulator that has it, on a Mac with Apple Intelligence turned on, and its words differ from run to
+  run: retake it with `ONLY=testCoachInWorkout Branding/capture-blog.sh iphone`, read the tip, then run the media
+  script and put the tip's words in the picture's `alt`.
 
 ## DietApp Pro
 

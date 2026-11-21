@@ -281,6 +281,7 @@ p + p {
   font-weight: 600;
   color: var(--muted);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .topnav a:hover,
@@ -296,6 +297,23 @@ p + p {
 @media (min-width: 52rem) {
   .topnav {
     display: flex;
+  }
+
+  .topbar .btn {
+    white-space: nowrap;
+  }
+}
+
+/* A home page's extra links (Watch, Screens) join the bar once every link fits on one line; until then
+   it has the five the other pages have. Seven links don't fit at 52rem: "How it works" broke over three
+   lines, on an 11-inch iPad Pro upright among others. */
+.topnav .secondary {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .topnav .secondary {
+    display: block;
   }
 }
 

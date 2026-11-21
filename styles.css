@@ -1284,6 +1284,62 @@ p + p {
   justify-content: center;
 }
 
+/* Posts from the blog on the home page, on the blog's own cards (.post-cards). There are only a few,
+   so they stretch across the row instead of leaving empty columns, as the feature cards do. */
+
+.from-blog .post-cards {
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.from-blog-more {
+  margin-top: 2rem;
+}
+
+/* DietApp Pro, the developer's other app, below the final call to action */
+
+.sibling {
+  padding-bottom: clamp(4rem, 9vw, 7rem);
+}
+
+.sibling-panel {
+  display: grid;
+  justify-items: start;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.sibling-panel img {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 22%;
+}
+
+.sibling-copy .eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.sibling-copy h2 {
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+.sibling-copy p:not(.eyebrow) {
+  max-width: 40rem;
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+@media (min-width: 52rem) {
+  .sibling-panel {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.75rem;
+  }
+}
+
 /* Text pages: the privacy policy and the support page, one column of prose */
 
 .doc {

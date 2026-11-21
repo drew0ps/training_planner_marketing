@@ -5,8 +5,26 @@
   <link href="https://trainingplanner.pro/blog/"/>
   <link rel="self" href="https://trainingplanner.pro/blog/feed.xml"/>
   <id>https://trainingplanner.pro/blog/</id>
-  <updated>2026-11-19T08:00:00Z</updated>
+  <updated>2026-11-21T08:00:00Z</updated>
   <author><name>Adam Marton</name></author>
+  <entry>
+    <title>Progressive overload: the one rule behind every program</title>
+    <link href="https://trainingplanner.pro/blog/progressive-overload.html"/>
+    <id>https://trainingplanner.pro/blog/progressive-overload.html</id>
+    <published>2026-11-21T08:00:00Z</published>
+    <updated>2026-11-21T08:00:00Z</updated>
+    <summary>Muscles and strength grow when training asks a little more of them than last time. What progressive overload is, the ways to add to it, how to tell it's working, and how TrainingPlanner keeps track of it set by set.</summary>
+    <category term="Training"/>
+  </entry>
+  <entry>
+    <title>Double progression: add reps, then weight</title>
+    <link href="https://trainingplanner.pro/blog/double-progression.html"/>
+    <id>https://trainingplanner.pro/blog/double-progression.html</id>
+    <published>2026-11-21T08:00:00Z</published>
+    <updated>2026-11-21T08:00:00Z</updated>
+    <summary>Work in a rep range, add reps at the same weight until every set reaches the top, then add weight and start again at the bottom. How double progression works, why it suits muscle growth and dumbbells, and how to set it up in TrainingPlanner.</summary>
+    <category term="Training"/>
+  </entry>
   <entry>
     <title>Quick start: a simple Push · Legs · Pull, set up in ten minutes</title>
     <link href="https://trainingplanner.pro/blog/quick-start-push-legs-pull.html"/>

@@ -112,6 +112,10 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   `update-blog-media.py` and after changing a title.
 - **A new post:** copy a draft, change its slug, words and pictures, add it to `queue.txt`, then run the media
   script and the covers.
+- **On the home page:** "From the blog" (`#from-the-blog` in `index.html`) shows three published posts on the
+  blog's cards, chosen by hand and written there, not by the publishing script: the quick start, progressive
+  overload and double progression since November 21, 2026. Change a card when its post's title or cover
+  changes, and link only posts that are out. "How it works" links the last two in its third step.
 
 ## DietApp Pro
 
@@ -122,7 +126,8 @@ client) are listed first, under Using TrainingPlanner. A post's section is its `
   lead nowhere. Once the listing is live, make each one a link to its App Store URL
   (`<a class="btn btn-primary" href="…">Download on the App Store</a>`, "Get the app" in the top bar),
   add `installUrl` to the JSON-LD, and change "Coming soon to the App Store, free to start" in the closing
-  section.
+  section. TrainingPlanner's home page has a panel for it below its closing section (`#dietapp` in
+  `index.html`), "Coming soon from the same developer": change that line then too.
 - **Copy** follows the App Store listing in `../ios_diet_app/docs/app-store-listing.md`: the feature
   lists, the free allowances (3 AI logs a week, 3 saved meals) and the Pro list. Meal photo logging is off
   in the app since 2.0.8, so the page doesn't offer it; scanning a nutrition label is still there.

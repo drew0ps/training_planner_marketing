@@ -2,15 +2,15 @@
 # in _drafts/. The dates are the plan, Mondays and Thursdays; nothing goes out by itself. Change the
 # order by moving lines, and add a new post as a line wherever it should go.
 
-quick-start-push-legs-pull                    2026-11-23
-progressive-overload                          2026-11-26
+quick-start-push-legs-pull                    2026-11-19
+progressive-overload                          2026-11-21
+double-progression                            2026-11-21
 five-by-five-strength                         2026-11-30
 how-a-training-plan-is-built                  2026-12-03
 full-body-a-b                                 2026-12-07
 coaching-trainer-and-client                   2026-12-10
 linear-progression                            2026-12-14
 push-legs-pull                                2026-12-17
-double-progression                            2026-12-21
 upper-lower-split                             2026-12-24
 choosing-a-training-split                     2026-12-28
 two-day-full-body                             2026-12-31

@@ -1,0 +1,46 @@
+/* FinanceApp Pro's pages: the site's stylesheet (../styles.css), and what differs from TrainingPlanner's
+   pages below. */
+
+/* The app's icon stands for its mark, in the bar and in the hero. */
+
+.app-mark {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 22%;
+  vertical-align: middle;
+}
+
+.app-mark-hero {
+  display: block;
+  width: clamp(4.5rem, 9vw, 5.5rem);
+  height: auto;
+  margin-bottom: 1.75rem;
+  border-radius: 22%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+.closing .app-mark-hero {
+  margin: 0 auto 1.25rem;
+}
+
+/* Until the App Store listing is live, the download buttons say so and lead nowhere: a ghost
+   button's outline that doesn't light up or press. */
+
+.btn.soon {
+  cursor: default;
+}
+
+.btn.soon:active {
+  transform: none;
+}
+
+.btn-ghost.soon:hover {
+  border-color: var(--line);
+  color: var(--text);
+}
+
+/* One plan: centred under the comparison. */
+
+.plans {
+  justify-content: center;
+}

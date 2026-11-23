@@ -39,10 +39,11 @@ sips --resampleWidth 1200 -s format png \
 sips --resampleWidth 180 -s format png \
   "$app/DietApp/Assets.xcassets/AppIcon.appiconset/AppIcon.png" --out "$site/apple-touch-icon.png" > /dev/null
 
-# The Apple Watch: the three screens the page shows
+# The Apple Watch: the screens the page shows, and the recent foods, kept for when it does again
 mkdir -p "$site/screenshots/devices"
 cp "$framed/Apple-Watch/01-log.png" "$site/screenshots/devices/watch-log.png"
 cp "$framed/Apple-Watch/02-recent.png" "$site/screenshots/devices/watch-recent.png"
 cp "$framed/Apple-Watch/04-water.png" "$site/screenshots/devices/watch-water.png"
+cp "$framed/Apple-Watch/07-face.png" "$site/screenshots/devices/watch-face.png"
 
 ls -la "$site/screenshots" "$site/screenshots/devices" "$site/og-image.png" "$site/apple-touch-icon.png"
